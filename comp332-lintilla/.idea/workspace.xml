@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="842dd8ab-fdf1-4877-8267-4723a599c211" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1SdwLHO7aEQGlFmVXXKZTFeFEx2" />
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../dominicverity-comp332-week11-8035fddcacf2" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SbtLocalSettings">
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="Lintilla Functional Language" />
+              <option name="path" value="$PROJECT_DIR$" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="lintilla [file:/C:/Users/Elie_/Desktop/comp332/comp332-lintilla/]" />
+                <option name="path" value="$PROJECT_DIR$" />
+              </ExternalProjectPojo>
+              <ExternalProjectPojo>
+                <option name="name" value="Lintilla Functional Language-build" />
+                <option name="path" value="$PROJECT_DIR$/project" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="modificationStamps">
+      <map>
+        <entry key="$PROJECT_DIR$" value="3143813268652" />
+        <entry key="$PROJECT_DIR$/build.sbt" value="523421297" />
+        <entry key="$PROJECT_DIR$/project/build.properties" value="1518598428" />
+      </map>
+    </option>
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$/../../UNI2019/comp332-frogs-and-toads" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../UNI2019/creative-scala-template" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../Assignment3-comp332-lintilla-eb7c55209644" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../comp332-webcpl" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../dominicverity-comp332-week10-4cc53a223b38" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../dominicverity-comp332-week11-8035fddcacf2" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="842dd8ab-fdf1-4877-8267-4723a599c211" name="Default Changelist" comment="" />
+      <created>1571906723092</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1571906723092</updated>
+    </task>
+    <servers />
+  </component>
+</project>

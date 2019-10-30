@@ -1,0 +1,35 @@
+//
+// This file is part of COMP332 Assignment 3 2019.
+//
+// Lintilla, a simple functional programming language.
+//
+// © 2019, Dominic Verity and Anthony Sloane, Macquarie University.
+//         All rights reserved.
+//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+//
+// Example illustrating the translation of arrays and for loops.
+//
+
+let v = array array int;
+
+for i = 0 to 4 do {
+  v += array int;
+  for j = 4 to 0 step -1 do {
+    v!i += 5 * i + j
+  }
+};
+
+let c = array int;
+c += 0;
+
+for j = 4 to 0 step -1 do {
+  for i = 0 to 4 do {
+    print v!i!j;
+    c!0 := c!0 + v!i!j
+  }
+};
+
+print c!0

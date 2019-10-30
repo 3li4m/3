@@ -1,0 +1,40 @@
+//
+// This file is part of COMP332 Assignment 3 2019.
+//
+// Lintilla, a simple functional programming language.
+//
+// © 2019, Dominic Verity and Anthony Sloane, Macquarie University.
+//         All rights reserved.
+//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+//
+// A while loop in functional style.
+//
+
+fn while(p : fn(int)->bool, f : fn(int)->int) -> (fn(int)->int) {
+
+    fn while_aux(n : int) -> int {
+        if p(n) {
+            while_aux(f(n))
+        } else {
+            n
+        }
+    };
+
+    while_aux
+};
+
+fn step(n : int) -> int {
+    print(n);
+    n * 3 + 1
+};
+
+fn less_10000(n : int) -> bool {
+    n < 10000
+};
+
+let funny = while(less_10000, step);
+
+print funny(2)

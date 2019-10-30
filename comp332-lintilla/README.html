@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">html {
+font-size: 100%;
+overflow-y: scroll;
+-webkit-text-size-adjust: 100%;
+-ms-text-size-adjust: 100%;
+}
+body {
+color: #444;
+font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+font-size: 12px;
+line-height: 1.7;
+padding: 1em;
+margin: auto;
+max-width: 42em;
+background: #fefefe;
+}
+a {
+color: #0645ad;
+text-decoration: none;
+}
+a:visited {
+color: #0b0080;
+}
+a:hover {
+color: #06e;
+}
+a:active {
+color: #faa700;
+}
+a:focus {
+outline: thin dotted;
+}
+*::-moz-selection {
+background: rgba(255, 255, 0, 0.3);
+color: #000;
+}
+*::selection {
+background: rgba(255, 255, 0, 0.3);
+color: #000;
+}
+a::-moz-selection {
+background: rgba(255, 255, 0, 0.3);
+color: #0645ad;
+}
+a::selection {
+background: rgba(255, 255, 0, 0.3);
+color: #0645ad;
+}
+p {
+margin: 1em 0;
+}
+img {
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+color: #111;
+line-height: 125%;
+margin-top: 2em;
+font-weight: normal;
+}
+h4, h5, h6 {
+font-weight: bold;
+}
+h1 {
+font-size: 2.5em;
+}
+h2 {
+font-size: 2em;
+}
+h3, p.subtitle {
+font-size: 1.5em;
+}
+h4 {
+font-size: 1.2em;
+}
+h5 {
+font-size: 1em;
+}
+h6 {
+font-size: 0.9em;
+}
+h1.title, p.subtitle, p.author, p.date {
+text-align: center
+}
+blockquote {
+color: #666666;
+margin: 0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr {
+display: block;
+height: 2px;
+border: 0;
+border-top: 1px solid #aaa;
+border-bottom: 1px solid #eee;
+margin: 1em 0;
+padding: 0;
+}
+pre, code, kbd, samp {
+color: #000;
+font-family: monospace, monospace;
+_font-family: 'courier new', monospace;
+font-size: 0.98em;
+}
+pre {
+white-space: pre;
+white-space: pre-wrap;
+word-wrap: break-word;
+}
+b, strong {
+font-weight: bold;
+}
+dfn {
+font-style: italic;
+}
+ins {
+background: #ff9;
+color: #000;
+text-decoration: none;
+}
+mark {
+background: #ff0;
+color: #000;
+font-style: italic;
+font-weight: bold;
+}
+sub, sup {
+font-size: 75%;
+line-height: 0;
+position: relative;
+vertical-align: baseline;
+}
+sup {
+top: -0.5em;
+}
+sub {
+bottom: -0.25em;
+}
+ul, ol {
+margin: 1em 0;
+padding: 0 0 0 2em;
+}
+li p:last-child {
+margin-bottom: 0;
+}
+ul ul, ol ol {
+margin: .3em 0;
+}
+dl {
+margin-bottom: 1em;
+}
+dt {
+font-weight: bold;
+margin-bottom: .8em;
+}
+dd {
+margin: 0 0 .8em 2em;
+}
+dd:last-child {
+margin-bottom: 0;
+}
+img {
+border: 0;
+-ms-interpolation-mode: bicubic;
+vertical-align: middle;
+}
+figure {
+display: block;
+text-align: center;
+margin: 1em 0;
+}
+figure img {
+border: none;
+margin: 0 auto;
+}
+figcaption {
+font-size: 0.8em;
+font-style: italic;
+margin: 0 0 .8em;
+}
+table {
+margin-bottom: 2em;
+border-bottom: 1px solid #ddd;
+border-right: 1px solid #ddd;
+border-spacing: 0;
+border-collapse: collapse;
+}
+table th {
+padding: .2em 1em;
+background-color: #eee;
+border-top: 1px solid #ddd;
+border-left: 1px solid #ddd;
+}
+table td {
+padding: .2em 1em;
+border-top: 1px solid #ddd;
+border-left: 1px solid #ddd;
+vertical-align: top;
+}
+.author {
+font-size: 1.2em;
+text-align: center;
+}
+@media only screen and (min-width: 480px) {
+body {
+font-size: 14px;
+}
+}
+@media only screen and (min-width: 768px) {
+body {
+font-size: 16px;
+}
+}
+@media print {
+* {
+background: transparent !important;
+color: black !important;
+filter: none !important;
+-ms-filter: none !important;
+}
+body {
+font-size: 12pt;
+max-width: 100%;
+}
+a, a:visited {
+text-decoration: underline;
+}
+hr {
+height: 1px;
+border: 0;
+border-bottom: 1px solid black;
+}
+a[href]:after {
+content: " (" attr(href) ")";
+}
+abbr[title]:after {
+content: " (" attr(title) ")";
+}
+.ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+content: "";
+}
+pre, blockquote {
+border: 1px solid #999;
+padding-right: 1em;
+page-break-inside: avoid;
+}
+tr, img {
+page-break-inside: avoid;
+}
+img {
+max-width: 100% !important;
+}
+@page :left {
+margin: 15mm 20mm 15mm 10mm;
+}
+@page :right {
+margin: 15mm 10mm 15mm 20mm;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3 {
+page-break-after: avoid;
+}
+}
+</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="macquarie-university-department-of-computing">Macquarie University, Department of Computing</h1>
+<h2 id="comp332-programming-languages-2018">COMP332 Programming Languages 2018</h2>
+<h2 id="lintilla-a-simple-functional-programming-language.">Lintilla, a simple functional programming language.</h2>
+<h3 id="introduction">Introduction</h3>
+<p><a href="http://hitchhikers.wikia.com/wiki/Lintilla">Lintilla</a> is a language that contains elements from mainstream functional languages such as <a href="https://en.wikipedia.org/wiki/Standard_ML">ML</a>, <a href="https://www.haskell.org/">Haskell</a>, <a href="https://www.scala-lang.org/">Scala</a> and <a href="https://en.wikipedia.org/wiki/Scheme_(programming_language)">Scheme</a>. It uses a syntax that has been borrowed from Dom’s favourite systems programming language <a href="https://www.rust-lang.org/">Rust</a>.</p>
+<p>The description here provides a brief overview of the Lintilla language and its syntax. Further detail about aspects such as checking the validity of names or types and translating a program into an executable form will be added when we work on the Lintilla code generator in assignment 3.</p>
+<h3 id="the-lintilla-language">The Lintilla language</h3>
+<p>The basic unit of a Lintilla program is the <em>expression</em>. There are no statements, their place is taken by expressions whose type is the special type <code>unit</code>. You can think of unit as a type which has only one value, called <code>()</code>, and it is this value that is returned by those constructs which otherwise might be regarded as returning nothing (like a procedure or a <code>while</code> loop).</p>
+<p>A Lintilla program is comprised of a sequence of expressions of type <code>unit</code> separated by semicolons. For example, here is a simple program that binds the result of a simple computation to a variable and then prints the contents of that variable:</p>
+<pre><code>let x = 2 + 3 * 4;
+print x</code></pre>
+<p>When this program is run it will print the value of the expression: the number 14.</p>
+<p><em>Block expressions</em> are used to build programs out of smaller expressions. A block expression is a pair of curly braces containing zero or more expressions separated by semicolons (<code>;</code>). The idea is that when a block is executed each expression in that block is executed in turn, and the value computed by the last expression becomes the value of that block. For example, here is a program consisting of a block expression that declares two variables and uses their values in the expression whose values if returned from the block:</p>
+<pre><code>let x = {
+   let a = 5;
+   let b = a + 1;
+   a * b
+};
+print x</code></pre>
+<p>This program will print the result of multiplying <code>a</code> by <code>b</code>, so 30 will be printed. Here the name <code>a</code> can be used in the definition of <code>b</code> since <code>b</code> is defined later, but that is a name analysis issue, so we don’t need to worry about it for the moment. Notice, in particular, that the semicolon is used as an expression separator, not a line terminator; so the last line in this block isn’t followed by a semicolon. An empty block <code>{}</code> has type <code>unit</code>.</p>
+<p><em>Variables</em> are <em>immutable</em>, in the sense that they are bound to a value when they are declared and they maintain the same value from there to the point where they go out of scope. An variable is declared and bound to a value in a <code>let</code> expression:</p>
+<pre><code>let doms_var = 10;</code></pre>
+<p>The scope of a variable extends from the point where it is declared to the end of the smallest enclosing block; or to the end of the program if the variable is bound at the top-level.</p>
+<p><em>Functions</em> may also be declared, both at top level or within a block. For example here is the familiar factorial function given as a recursive function in Lintilla:</p>
+<pre><code>fn factorial(n: int) -&gt; int {
+  if n = 0 { 1 } else { n * factorial(n-1) }
+}</code></pre>
+<p>This declaration defines a new function which takes a single parameter of type <code>int</code> and returns an <code>int</code> as its result. It introduces a new immutable variable called <code>factorial</code> which, as a first order approximation, we can think of as pointing to the code generated by compiling the function body. The result returned by a function is the value returned when its body, a block, is executed.</p>
+<p>Functions may take more than one parameter:</p>
+<pre><code>fn mod(n: int, m: int) -&gt; int {
+  n - (n / m) * m
+};
+
+print(mod(23,10))  // prints `3`, the remainder when `23` is divided by `10`.</code></pre>
+<p>A <em>procedure</em> is a function which returns no value, or more precisely it returns the unique value <code>()</code> of type <code>unit</code>. Procedures are declared by omitting the return type specification in a <code>fn</code> declaration:</p>
+<pre><code>let x = 20;
+
+fn print_n_plus_x(n : int) {
+  print x + n
+};</code></pre>
+<p>print_n_plus_x(23) // prints the value <code>43</code></p>
+<p>The same effect can be gained by using the the explicit return type <code>unit</code>:</p>
+<pre><code>fn print_n_plus_x(n : int) -&gt; unit {
+  print x + n
+}</code></pre>
+<p>We do not distinguish declarations from other kinds of expressions for the purposes of parsing. That doesn’t mean that it will always make sense to use a declaration wherever any other kind of expression is appropriate, but just that this isn’t a decision that the parser will make. The places where declarations can legally occur will be determined, and enforced, by the Lintilla type checker.</p>
+<p><em>Control expressions</em> we have already seen the principle control expression provided by Lintilla, the <code>if</code> expression. We might note that the language specifies that <code>if</code> expressions must have both a <em>then</em> and an <em>else</em> clause and that these must both be blocks enclosed in curly braces.</p>
+<p><em>Expression</em> forms are interchangeable as long as they have the correct type. E.g., anywhere we can put a number can also take a block or some other kind of expression that evaluates to a number. For example, here is an artificial program that uses blocks nested inside an arithmetic operation:</p>
+<pre><code>{
+  let a = 3;
+  a + 1
+} *
+{
+  let b = 10;
+  b - 1
+}</code></pre>
+<p>Or more concisely:</p>
+<pre><code>{ let a = 3; a + 1 } * { let b = 10; b - 1 }</code></pre>
+<p>We’ve seen a few different forms of expression: numbers, addition expressions, multiplication expressions and function call expressions. There are also other arithmetic operations, boolean values, boolean literals, relational and logical operators, and conditional expressions. The complete syntax of Lintilla is given below.</p>
+<p>Finally Lintilla allows programmers to insert comments into their code. These begin with two slashes <code>//</code> and extend from there to the end of the line. Comments are ignored by the compiler, which treats them just like white space.</p>
+<h3 id="extensions">Extensions</h3>
+<p>Programmer demand in recent moths has lead to Lintilla being extended to incorporate the following new constructs:</p>
+<p><em>Logical operators</em> and (<code>&amp;&amp;</code>), or (<code>||</code>) and not (<code>~</code>) whose semantics follows the usual conventions regarding <em>short circuit evaluation</em> of logical operators.</p>
+<p><em>Mutable arrays</em> which can contain values of any Lintilla type, including function and array types (hence multi-dimensional arrays), which are homogeneously typed (all entries in an array have the same type). Arrays are created using an <code>array</code> operator, dereferenced using the pling operator (<code>!</code> as in <code>BCPL</code>), extended using the append operation (<code>+=</code> as in <code>Scala</code>), and updated to contain new values using the assignment operator (<code>:=</code>).</p>
+<p><em>For loops</em> these are “genuine” <code>for</code> loops in the style of <code>Pascal</code> and its derivates rather than the kind of logically controlled <code>for</code> loop found in <code>C</code> and <code>Java</code>. Lintilla also provides:</p>
+<ul>
+<li>a <code>loop</code> construct which provides for the early termination of the current iteration of the smallest enclosing <code>for</code> loop and starts the next iteration of that loop, and</li>
+<li>a <code>break</code> construct which immediately terminates the execution of the smallest enclosing <code>for</code> loop entirely, and returns control to the command that immediately follows that loop.</li>
+</ul>
+<h3 id="lintilla-syntax">Lintilla syntax</h3>
+<p>Here is a complete context-free grammar for the Lintilla language:</p>
+<pre><code>program : (exp &quot;;&quot;)* exp.
+
+exp : assignexp
+    | appendexp
+    | logexp
+    | ifexp
+    | printexp
+    | forexp
+    | loopexp
+    | breakexp
+    | letdecl
+    | fndecl.
+
+logexp : logexp &quot;&amp;&amp;&quot; logexp
+       | logexp &quot;||&quot; logexp
+       | logexp &quot;=&quot; logexp
+       | logexp &quot;&lt;&quot; logexp
+       | logexp &quot;+&quot; logexp
+       | logexp &quot;-&quot; logexp
+       | logexp &quot;*&quot; logexp
+       | logexp &quot;/&quot; logexp
+       | logexp &quot;!&quot; logexp
+       | &quot;-&quot; logexp
+       | &quot;~&quot; logexp
+       | &quot;false&quot;
+       | &quot;true&quot;
+       | integer
+       | array tipe
+       | &quot;length&quot; &quot;(&quot; exp &quot;)&quot;
+       | app
+       | block
+       | &quot;(&quot; exp &quot;)&quot;.
+
+app : app &quot;(&quot; ((exp &quot;,&quot;)* exp)? &quot;)&quot;
+    | idnuse.
+
+block : &quot;{&quot; ((exp &quot;;&quot;)* exp)? &quot;}&quot;.
+
+assignexp : logexp &quot;:=&quot; logexp
+
+appendexp : logexp &quot;+=&quot; logexp
+
+forexp : &quot;for&quot; idndef &quot;=&quot; logexp &quot;to&quot; logexp (&quot;step&quot; logexp)? &quot;do&quot; block
+
+loopexp : &quot;loop&quot;
+
+breakexp : &quot;break&quot;
+
+ifexp : &quot;if&quot; exp block &quot;else&quot; block.
+
+printexp : &quot;print&quot; exp.
+
+letdecl : &quot;let&quot; idndef &quot;=&quot; exp.
+
+fndecl : &quot;fn&quot; idndef &quot;(&quot; ((paramdecl &quot;,&quot;)* paramdecl)? &quot;)&quot; (&quot;-&gt;&quot; tipe)? block.
+
+paramdecl : idndef &quot;:&quot; tipe.</code></pre>
+<p>Finally, the syntax of types:</p>
+<pre><code>tipe : &quot;unit&quot;
+     | &quot;bool&quot;
+     | &quot;int&quot;
+     | &quot;fn&quot; &quot;(&quot; ((tipe &quot;,&quot;)* tipe)? &quot;)&quot; &quot;-&gt;&quot; tipe
+     | &quot;array&quot; tipe
+     | &quot;(&quot; tipe &quot;)&quot;.</code></pre>
+<p>We use the word <code>tipe</code> instead of <code>type</code> since the latter is a Scala keyword which prevents us from using it as the name of a parser in our code. A function type is specified using the syntax</p>
+<pre><code>fn(type_1, type_2, ..., type_n) -&gt; res_type</code></pre>
+<p>which denotes the type of a function that takes <code>n</code> parameters of types <code>type_1</code>,…, <code>type_n</code> and returns a result of type <code>res_type</code>. We might note that a procedure has a type of the form</p>
+<pre><code>fn(type_1, type_2, ..., type_n) -&gt; unit</code></pre>
+<p>and that Lintilla does not allow variables or parameters to have type <code>unit</code>.</p>
+<h4 id="precedence-and-associativity">Precedence and associativity</h4>
+<p>The grammar above is not immediately suitable for encoding as a parser. The <code>logexp</code> non-terminal is ambiguous since it makes no allowance for precedence and associativity of the operators. You should rewrite that grammar production to implement the following precedence and associativity rules:</p>
+<ul>
+<li><p>The following expression constructs have precedence as shown from lowest to highest with constructs on the same line having the same precedence:</p>
+<ol type="1">
+<li>logical and (<code>&amp;&amp;</code>) and or (<code>||</code>)</li>
+<li>equal (<code>=</code>) and less (<code>&lt;</code>) than</li>
+<li>addition (<code>+</code>) and subtraction (<code>-</code>)</li>
+<li>multiplication (<code>*</code>) and division (<code>\</code>)</li>
+<li>array dereferencing (<code>!</code>)</li>
+<li>all other kinds of expression</li>
+</ol>
+<p>The constructs in the highest precedence category include unary negation, logical not, blocks in curly braces and expressions in parentheses.</p></li>
+<li><p>All binary expression operators are left associative, except for the relational operators (equality and less than) which are not associative.</p></li>
+</ul>
+<h3 id="semantic-rules">Semantic rules</h3>
+<p>The following sections explain the semantic rules of Lintilla, including its type rules. Many languages allow name and type analysis to be handled separately. Lintilla is in this category because we can first identify which entity a name represents before we check whether typed entities are used legally.</p>
+<p>The framework bundle for assignment 3 contains a semantic analyser module which implements the complete suite of these rules.</p>
+<h4 id="name-analysis">Name analysis</h4>
+<p>Like most languages, Lintilla name occurrences come in two varieties: defining occurrences (represented by <code>IdnDef</code> nodes in the tree), and applied occurrences (represented by <code>IdnUse</code> nodes). Defining occurrences appear as the defined name in ‘let’ definitions and function definitions, and as the names of function parameters. All other identifier occurrences are applied and occur as plain names in expressions.</p>
+<p>For example, in the following program the occurrences of <code>f</code> and <code>g</code> at the beginnings of the <code>fn</code> definitions are defining occurrences, as are the appearances of <code>a</code> and <code>b</code> in their parameter sections.</p>
+<pre><code>fn f(a : int) -&gt; int {
+    a + 1
+};
+
+fn g(b : fn(int) -&gt; int) -&gt; int {
+    b(5)
+};
+
+print g(f)</code></pre>
+<p>The remaining identifiers are applied occurrences: the <code>a</code> in the second line, the <code>b</code> in the sixth line, and both <code>g</code> and <code>f</code> in the last line.</p>
+<p>The scoping rules of Lintilla are very simple. An identifier defined in a block (by a <code>let</code> or <code>fn</code> declaration) can only be used later in that block (including in nested blocks). Its scope extends from the point at which it is defined to the end of the smallest enclosing block; or to the end of the program if the identifier is defined at the top-level. Thus, in the following program, the <code>p</code> on the last line is illegal because it is outside the scope of the definition of <code>p</code> within the inner block. The <code>p</code> on the third line is legal because it is inside the scope of the value definition of <code>p</code>.</p>
+<pre><code>let b = {
+    let p = 1;
+    p + 1
+ };
+ print p + 2</code></pre>
+<p>A variable cannot be redefined within the same block, so the second line in the following code would cause an error</p>
+<pre><code>let x = 1;
+let x = 2</code></pre>
+<p>it can, however, be redefined in a inner block so the following code is legal:</p>
+<pre><code>let x = 1;
+{
+    let x = 2;
+    print x
+};
+print x</code></pre>
+<p>In the code from the <code>let</code> on the fourth line and the <code>}</code> on the sixth line the original binding of <code>x</code> to <code>1</code> is shadowed by a new binding of <code>x</code> to <code>2</code>; we might say that this is a <em>hole</em> in the scope of the binding made at line <code>1</code>. So when executed this code will print the number <code>2</code> followed by the number <code>1</code>.</p>
+<p>In a <code>let</code> binding the scope of the variable being does <strong>not</strong> include the initialisation expression of that <code>let</code>. So in the following example</p>
+<pre><code>let x = 10;
+{
+    let x = x * x;
+    print x
+};
+print x</code></pre>
+<p>the <code>x</code> referred to in the initialisation expression <code>x * x</code> is that bound in the <code>let</code> on line <code>1</code>. So when executed this code will print the number <code>100</code> followed by the number <code>10</code>. This rule disallows the definition of <code>let</code> bound identifiers whose definitions depend on the value being bound, something that would be ill defined (why?).</p>
+<p>On the other hand the function name identifier bound in a <code>fn</code> declaration <strong>is</strong> in scope in the body of the function being defined. This allows us to define (directly) recursive functions such as our old friend the factorial:</p>
+<pre><code>fn fact(n: int) -&gt; int {
+    if n = 0 { 1 } else { n * fact(n-1) }
+}</code></pre>
+<p>In a <code>fn</code> declaration each parameter declares the binding of a new identifier whose scope extends throughout the body of the declared function. That scope also encompasses the parameter declarations to the right of a given one. The upshot of this rule is that it is illegal to give two parameters the same identifier or to attempt to rebind that identifier directly within the body of the function (although it can still be rebound inside an inner block within the body).</p>
+<p>It should be noted that the actual scope of the function identifier bound in a <code>fn</code> declaration is that of the block within which that declaration is situated. It’s body is a smaller scope within that enclosing one. This means that it <strong>is</strong> legal to rebind a function identifier within its own body. So for example, the following is semantically correct:</p>
+<pre><code>fn l() { 
+    let l = 10;
+    print l
+}</code></pre>
+<p>The downside of rebinding the name of a function within its own body is that it is now not possible to make a recursive call.</p>
+<p>Finally a <code>for</code> loop also starts a new scope, which includes its control variable, a defining occurrence, and extends to the end of the body of that loop. Its from, to, and step expressions are not included in that new scope, however, and they are evaluated in the enclosing scope. The control variable of a <code>for</code> loop may not be rebound in the body of that loop.</p>
+<h4 id="type-analysis">Type analysis</h4>
+<p>Lintilla has four forms of type: integers, Booleans, a trivial type and functions. The first three are indicated by the <code>int</code>, <code>bool</code> and <code>unit</code> type names (respectively). A function type is indicated by the <code>fn</code> type constructor:</p>
+<pre><code>fn(type_1, ..., type_n) -&gt; type</code></pre>
+<p>This denotes the type a a function which takes <code>n</code> parameters of types <code>type_1</code>, <code>type_2</code>, …, <code>type_n</code> and returns a result of type <code>type</code>. For example, the type</p>
+<pre><code>fn(int, bool) -&gt; int</code></pre>
+<p>is the type of a function which takes two parameters, of types <code>int</code> and <code>bool</code>, and returns a function of type <code>int</code>. It is legal for a function to take no parameters, in which case it would have a type of the form:</p>
+<pre><code>fn() -&gt; type</code></pre>
+<p>The <code>unit</code> type is used to denote the return type of functions, and other builtin constructs, that perform an action but don’t actually return a result. This is often the case for functions whose purpose is to perform a side effect, like printing to the terminal. For example, the purpose of a <code>print</code> expression is to print a value computed by its operand, but it doesn’t itself return a value. So an expression like</p>
+<pre><code>print 10 + x</code></pre>
+<p>has type <code>unit</code>. Builtin operations of type <code>unit</code> play the role that statements play in other languages. Functions with return type <code>unit</code> are sometimes refereed to as <em>procedures</em>.</p>
+<p>The type of a variable introduced in a <code>let</code> declaration is the type of the expression to which it is bound in that definition. For example, in the code</p>
+<pre><code>let x = 1;
+print x</code></pre>
+<p>we know that <code>x</code> is has type <code>int</code> since it is bound to an expression whose type is integer.</p>
+<p>In a <code>fn</code> declaration all types of defined identifiers, both parameter identifiers and the identifier of the function itself, are given explicitly. The type of each parameter is given as a type expression, separated from the declared identifier by a colon. The function type itself is constructed using the list of specified parameter types and the return type given in the function signature. So in the following function declaration</p>
+<pre><code>fn fib(res1 : int, res2 : int, count : int) -&gt; int {
+    if (0 &lt; count) {
+        fib(res2, res1 + res2, count - 1)
+    } else {
+        res1
+    }
+}</code></pre>
+<p>the parameter identifiers <code>res1</code>, <code>res2</code> and <code>count</code> are all declared to have the type <code>int</code> and the type of the function identifier <code>fib</code> is <code>fn(int, int, int) -&gt; int</code>. If a function declaration lacks a return type specification (the <code>-&gt;</code> part), that is if it is a procedure declaration, then it is assumed to have return type <code>unit</code>. So the procedure</p>
+<pre><code>fn print_4_times(n : int) {
+    print n;
+    print n;
+    print n;
+    print n
+}</code></pre>
+<p>has type <code>fn(int) -&gt; unit</code>. It is not legal for a function to take a parameter of <code>unit</code> type, consequently it is not legal for a function type to have the type <code>unit</code> in a parameter position.</p>
+<p>Functions may have parameters and return values of which are of a function type, for example:</p>
+<pre><code>fn iterate(f : fn(int) -&gt; int, count : int) -&gt; (fn(int) -&gt; int) {
+    fn iter(n : int, count : int) -&gt; int {
+        if count &lt; 1 {
+            n
+        } else {
+            iter(f(n), count - 1)
+        }
+    };
+    
+    fn res(n : int) -&gt; int {
+        iter(n, count)
+    };
+    
+    res
+}</code></pre>
+<p>Every (legal) expression in Lintilla has a type. The following points describe how the type of an expression is determined and give any typing conditions that are imposed on the types of values that occur as expression operands:</p>
+<ul>
+<li>The Boolean expressions <code>true</code> and <code>false</code> are of type <code>bool</code>.</li>
+<li>Any constant integer expression is of type <code>int</code>.</li>
+<li>Any constant array expression <code>array t</code> (where <code>t</code> denotes any Lintilla type) has type <code>array t</code>.</li>
+<li>The type of an applied identifier occurrence is the type given in its corresponding defining occurrence.</li>
+<li>All of the expressions at the top level of a program must have type <code>unit</code>.</li>
+<li>All of the expressions in a block, except for the last one, must have type unit. The type of a block expression is the type of the final expression in its body or <code>unit</code> if the block is empty.</li>
+<li><code>fn</code> and <code>let</code> declaration expressions have type <code>unit</code>.</li>
+<li><code>print</code> expressions have type <code>unit</code>.</li>
+<li><code>for</code>, <code>loop</code> and <code>break</code> expressions have type <code>unit</code>.</li>
+<li>assignment (<code>:=</code>) and array append (<code>+=</code>) expressions have type unit.</li>
+<li>The initialisation expression in a <code>let</code>, to the right of the <code>=</code>, can have any legal type except for <code>unit</code>.</li>
+<li>In a function declaration parameters can be given any legal type except for <code>unit</code> and its return type can be any legal type. The declared return type must equal the type of the block given as the function body.</li>
+<li>A function call <code>f(e_1,...,e_n)</code> must satisfy the following rules:
+<ul>
+<li>the expression <code>f</code> must have a function type <code>fn(type_1,type_2,...,type_m)-&gt;type</code>,</li>
+<li>the number of actual parameters <code>n</code> must match the number of formal parameters <code>m</code> in the function type of <code>f</code>,</li>
+<li>each actual parameter <code>e_r</code> (<code>r = 1,...,n</code>) must have the corresponding parameter type <code>type_r</code> given in the function type of <code>f</code>, and</li>
+<li>the expression <code>f(e_1,...,e_n)</code> itself has type given by the return type <code>type</code> given in the function type of <code>f</code>.</li>
+</ul></li>
+<li>The type of the condition expression in an <code>if</code> expression must be <code>bool</code>. The types of the <em>then</em> and <em>else</em> branches of the <code>if</code> expression can be of any type, but they must be of the same type as each other. The type of the <code>if</code> expression itself is the common type of its <em>then</em> and <em>else</em> blocks.</li>
+<li>the left and right hand operands of an assignment (<code>:=</code>) must have the same type.</li>
+<li>the right hand operand of an append (<code>+=</code>) can have any type <code>t</code>, and its left hand must have the corresponding type <code>array t</code>.</li>
+<li>the from, to and (optional) step expressions of a <code>for</code> loop must have type <code>int</code>.</li>
+<li>the (optional) step expression of a <code>for</code> must be a constant expression.</li>
+<li>the control variable of an <code>for</code> expression has type <code>int</code>.</li>
+<li>the block that comprises the body of a <code>for</code> must have type <code>unit</code>.</li>
+<li>The operands of addition, subtraction, multiplication and division expressions must be be of type <code>int</code> and their result is also of type <code>int</code>.</li>
+<li>The operands of and, or and not expressions must be of type <code>bool</code> and their result is also of type <code>bool</code></li>
+<li>The operands of a less-than expression must be of type <code>int</code> and its result is of type <code>bool</code>.</li>
+<li>The operands of an equals expression must be of the same type either <code>int</code> or <code>bool</code> and its result is of type <code>bool</code>.</li>
+<li>In all other cases not listed above, an expression can be of any type.</li>
+</ul>
+<hr />
+<p><a href="http://orcid.org/0000-0002-4137-6982">Dominic Verity</a><br />
+Last modified: 22 October 2019 <a href="http://mozilla.org/MPL/2.0/">Copyright (c) 2019 by Dominic Verity and Anthony Sloane. Macquarie University. All rights reserved.</a></p>
+</body>
+</html>

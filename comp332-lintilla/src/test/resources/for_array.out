@@ -1,0 +1,280 @@
+Program tree:
+-------------
+
+Program(
+    Vector(
+        LetDecl(IdnDef("v"), ArrayExp(ArrayType(IntType()))),
+        ForExp(
+            IdnDef("i"),
+            IntExp(0),
+            IntExp(4),
+            None,
+            Block(
+                Vector(
+                    AppendExp(IdnExp(IdnUse("v")), ArrayExp(IntType())),
+                    ForExp(
+                        IdnDef("j"),
+                        IntExp(4),
+                        IntExp(0),
+                        Some(NegExp(IntExp(1))),
+                        Block(
+                            Vector(
+                                AppendExp(
+                                    DerefExp(
+                                        IdnExp(IdnUse("v")),
+                                        IdnExp(IdnUse("i"))),
+                                    PlusExp(
+                                        StarExp(
+                                            IntExp(5),
+                                            IdnExp(IdnUse("i"))),
+                                        IdnExp(IdnUse("j")))))))))),
+        LetDecl(IdnDef("c"), ArrayExp(IntType())),
+        AppendExp(IdnExp(IdnUse("c")), IntExp(0)),
+        ForExp(
+            IdnDef("j"),
+            IntExp(4),
+            IntExp(0),
+            Some(NegExp(IntExp(1))),
+            Block(
+                Vector(
+                    ForExp(
+                        IdnDef("i"),
+                        IntExp(0),
+                        IntExp(4),
+                        None,
+                        Block(
+                            Vector(
+                                PrintExp(
+                                    DerefExp(
+                                        DerefExp(
+                                            IdnExp(IdnUse("v")),
+                                            IdnExp(IdnUse("i"))),
+                                        IdnExp(IdnUse("j")))),
+                                AssignExp(
+                                    DerefExp(IdnExp(IdnUse("c")), IntExp(0)),
+                                    PlusExp(
+                                        DerefExp(
+                                            IdnExp(IdnUse("c")),
+                                            IntExp(0)),
+                                        DerefExp(
+                                            DerefExp(
+                                                IdnExp(IdnUse("v")),
+                                                IdnExp(IdnUse("i"))),
+                                            IdnExp(IdnUse("j"))))))))))),
+        PrintExp(DerefExp(IdnExp(IdnUse("c")), IntExp(0)))))
+
+Environment out:
+----------------
+
+scope
+    "v" -> Variable(ArrayExp(array int))
+    "c" -> Variable(ArrayExp(int))
+
+Target tree:
+------------
+
+List(
+    IArray(),
+    IClosure(
+        None,
+        List("v"),
+        List(
+            IInt(0),
+            IInt(4),
+            IClosure(
+                None,
+                List("_from", "_to", "_break_cont"),
+                List(
+                    IClosure(
+                        None,
+                        List("_loop_cont"),
+                        List(IVar("_from"), IVar("_loop_cont"))),
+                    ICallCC(),
+                    IClosure(
+                        None,
+                        List("i", "_loop_cont"),
+                        List(
+                            IVar("_to"),
+                            IVar("i"),
+                            ILess(),
+                            IBranch(
+                                List(IVar("_break_cont"), IResume()),
+                                Nil),
+                            IVar("v"),
+                            IArray(),
+                            IAppend(),
+                            IInt(4),
+                            IInt(0),
+                            IClosure(
+                                None,
+                                List("_from", "_to", "_break_cont"),
+                                List(
+                                    IClosure(
+                                        None,
+                                        List("_loop_cont"),
+                                        List(
+                                            IVar("_from"),
+                                            IVar("_loop_cont"))),
+                                    ICallCC(),
+                                    IClosure(
+                                        None,
+                                        List("j", "_loop_cont"),
+                                        List(
+                                            IVar("j"),
+                                            IVar("_to"),
+                                            ILess(),
+                                            IBranch(
+                                                List(
+                                                    IVar("_break_cont"),
+                                                    IResume()),
+                                                Nil),
+                                            IVar("v"),
+                                            IVar("i"),
+                                            IDeref(),
+                                            IInt(5),
+                                            IVar("i"),
+                                            IMul(),
+                                            IVar("j"),
+                                            IAdd(),
+                                            IAppend(),
+                                            IVar("j"),
+                                            IInt(-1),
+                                            IAdd(),
+                                            IVar("_loop_cont"),
+                                            IVar("_loop_cont"),
+                                            IResume())),
+                                    ICall())),
+                            ICallCC(),
+                            IVar("i"),
+                            IInt(1),
+                            IAdd(),
+                            IVar("_loop_cont"),
+                            IVar("_loop_cont"),
+                            IResume())),
+                    ICall())),
+            ICallCC(),
+            IArray(),
+            IClosure(
+                None,
+                List("c"),
+                List(
+                    IVar("c"),
+                    IInt(0),
+                    IAppend(),
+                    IInt(4),
+                    IInt(0),
+                    IClosure(
+                        None,
+                        List("_from", "_to", "_break_cont"),
+                        List(
+                            IClosure(
+                                None,
+                                List("_loop_cont"),
+                                List(IVar("_from"), IVar("_loop_cont"))),
+                            ICallCC(),
+                            IClosure(
+                                None,
+                                List("j", "_loop_cont"),
+                                List(
+                                    IVar("j"),
+                                    IVar("_to"),
+                                    ILess(),
+                                    IBranch(
+                                        List(IVar("_break_cont"), IResume()),
+                                        Nil),
+                                    IInt(0),
+                                    IInt(4),
+                                    IClosure(
+                                        None,
+                                        List("_from", "_to", "_break_cont"),
+                                        List(
+                                            IClosure(
+                                                None,
+                                                List("_loop_cont"),
+                                                List(
+                                                    IVar("_from"),
+                                                    IVar("_loop_cont"))),
+                                            ICallCC(),
+                                            IClosure(
+                                                None,
+                                                List("i", "_loop_cont"),
+                                                List(
+                                                    IVar("_to"),
+                                                    IVar("i"),
+                                                    ILess(),
+                                                    IBranch(
+                                                        List(
+                                                            IVar(
+                                                                "_break_cont"),
+                                                            IResume()),
+                                                        Nil),
+                                                    IVar("v"),
+                                                    IVar("i"),
+                                                    IDeref(),
+                                                    IVar("j"),
+                                                    IDeref(),
+                                                    IPrint(),
+                                                    IVar("c"),
+                                                    IInt(0),
+                                                    IVar("c"),
+                                                    IInt(0),
+                                                    IDeref(),
+                                                    IVar("v"),
+                                                    IVar("i"),
+                                                    IDeref(),
+                                                    IVar("j"),
+                                                    IDeref(),
+                                                    IAdd(),
+                                                    IUpdate(),
+                                                    IVar("i"),
+                                                    IInt(1),
+                                                    IAdd(),
+                                                    IVar("_loop_cont"),
+                                                    IVar("_loop_cont"),
+                                                    IResume())),
+                                            ICall())),
+                                    ICallCC(),
+                                    IVar("j"),
+                                    IInt(-1),
+                                    IAdd(),
+                                    IVar("_loop_cont"),
+                                    IVar("_loop_cont"),
+                                    IResume())),
+                            ICall())),
+                    ICallCC(),
+                    IVar("c"),
+                    IInt(0),
+                    IDeref(),
+                    IPrint())),
+            ICall())),
+    ICall())
+
+Output:
+-------
+
+0
+5
+10
+15
+20
+1
+6
+11
+16
+21
+2
+7
+12
+17
+22
+3
+8
+13
+18
+23
+4
+9
+14
+19
+24
+300

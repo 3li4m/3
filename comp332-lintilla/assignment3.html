@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style>
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <style type="text/css">html {
+font-size: 100%;
+overflow-y: scroll;
+-webkit-text-size-adjust: 100%;
+-ms-text-size-adjust: 100%;
+}
+body {
+color: #444;
+font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+font-size: 12px;
+line-height: 1.7;
+padding: 1em;
+margin: auto;
+max-width: 42em;
+background: #fefefe;
+}
+a {
+color: #0645ad;
+text-decoration: none;
+}
+a:visited {
+color: #0b0080;
+}
+a:hover {
+color: #06e;
+}
+a:active {
+color: #faa700;
+}
+a:focus {
+outline: thin dotted;
+}
+*::-moz-selection {
+background: rgba(255, 255, 0, 0.3);
+color: #000;
+}
+*::selection {
+background: rgba(255, 255, 0, 0.3);
+color: #000;
+}
+a::-moz-selection {
+background: rgba(255, 255, 0, 0.3);
+color: #0645ad;
+}
+a::selection {
+background: rgba(255, 255, 0, 0.3);
+color: #0645ad;
+}
+p {
+margin: 1em 0;
+}
+img {
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+color: #111;
+line-height: 125%;
+margin-top: 2em;
+font-weight: normal;
+}
+h4, h5, h6 {
+font-weight: bold;
+}
+h1 {
+font-size: 2.5em;
+}
+h2 {
+font-size: 2em;
+}
+h3, p.subtitle {
+font-size: 1.5em;
+}
+h4 {
+font-size: 1.2em;
+}
+h5 {
+font-size: 1em;
+}
+h6 {
+font-size: 0.9em;
+}
+h1.title, p.subtitle, p.author, p.date {
+text-align: center
+}
+blockquote {
+color: #666666;
+margin: 0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr {
+display: block;
+height: 2px;
+border: 0;
+border-top: 1px solid #aaa;
+border-bottom: 1px solid #eee;
+margin: 1em 0;
+padding: 0;
+}
+pre, code, kbd, samp {
+color: #000;
+font-family: monospace, monospace;
+_font-family: 'courier new', monospace;
+font-size: 0.98em;
+}
+pre {
+white-space: pre;
+white-space: pre-wrap;
+word-wrap: break-word;
+}
+b, strong {
+font-weight: bold;
+}
+dfn {
+font-style: italic;
+}
+ins {
+background: #ff9;
+color: #000;
+text-decoration: none;
+}
+mark {
+background: #ff0;
+color: #000;
+font-style: italic;
+font-weight: bold;
+}
+sub, sup {
+font-size: 75%;
+line-height: 0;
+position: relative;
+vertical-align: baseline;
+}
+sup {
+top: -0.5em;
+}
+sub {
+bottom: -0.25em;
+}
+ul, ol {
+margin: 1em 0;
+padding: 0 0 0 2em;
+}
+li p:last-child {
+margin-bottom: 0;
+}
+ul ul, ol ol {
+margin: .3em 0;
+}
+dl {
+margin-bottom: 1em;
+}
+dt {
+font-weight: bold;
+margin-bottom: .8em;
+}
+dd {
+margin: 0 0 .8em 2em;
+}
+dd:last-child {
+margin-bottom: 0;
+}
+img {
+border: 0;
+-ms-interpolation-mode: bicubic;
+vertical-align: middle;
+}
+figure {
+display: block;
+text-align: center;
+margin: 1em 0;
+}
+figure img {
+border: none;
+margin: 0 auto;
+}
+figcaption {
+font-size: 0.8em;
+font-style: italic;
+margin: 0 0 .8em;
+}
+table {
+margin-bottom: 2em;
+border-bottom: 1px solid #ddd;
+border-right: 1px solid #ddd;
+border-spacing: 0;
+border-collapse: collapse;
+}
+table th {
+padding: .2em 1em;
+background-color: #eee;
+border-top: 1px solid #ddd;
+border-left: 1px solid #ddd;
+}
+table td {
+padding: .2em 1em;
+border-top: 1px solid #ddd;
+border-left: 1px solid #ddd;
+vertical-align: top;
+}
+.author {
+font-size: 1.2em;
+text-align: center;
+}
+@media only screen and (min-width: 480px) {
+body {
+font-size: 14px;
+}
+}
+@media only screen and (min-width: 768px) {
+body {
+font-size: 16px;
+}
+}
+@media print {
+* {
+background: transparent !important;
+color: black !important;
+filter: none !important;
+-ms-filter: none !important;
+}
+body {
+font-size: 12pt;
+max-width: 100%;
+}
+a, a:visited {
+text-decoration: underline;
+}
+hr {
+height: 1px;
+border: 0;
+border-bottom: 1px solid black;
+}
+a[href]:after {
+content: " (" attr(href) ")";
+}
+abbr[title]:after {
+content: " (" attr(title) ")";
+}
+.ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+content: "";
+}
+pre, blockquote {
+border: 1px solid #999;
+padding-right: 1em;
+page-break-inside: avoid;
+}
+tr, img {
+page-break-inside: avoid;
+}
+img {
+max-width: 100% !important;
+}
+@page :left {
+margin: 15mm 20mm 15mm 10mm;
+}
+@page :right {
+margin: 15mm 10mm 15mm 20mm;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3 {
+page-break-after: avoid;
+}
+}
+</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="macquarie-university-department-of-computing">Macquarie University, Department of Computing</h1>
+<h2 id="comp332-programming-languages-2019">COMP332 Programming Languages 2019</h2>
+<h2 id="assignment-3-lintilla-translation-and-execution">Assignment 3: Lintilla translation and execution</h2>
+<p>Due: 11.55pm Sunday 10th November (week 13)<br />
+Worth: 15% of unit assessment</p>
+<p>Marks breakdown:</p>
+<ul>
+<li>Code: 50% (of which tests are worth 10%)</li>
+<li>Report: 50% (of which test description is worth 10%)</li>
+</ul>
+<p>Submit a notice of disruption via <a href="https://ask.mq.edu.au">Ask@MQ</a> if you are unable to submit on time for medical or other legitimate reasons.</p>
+<p>Late penalty without proper justification: 20% of the full marks for the assessment per day or part thereof late.</p>
+<h3 id="overview">Overview</h3>
+<p>This assignment asks you to extend the translator for the Lintilla programming language. The new translations you will add will allow the Lintilla compiler to generate code for logical operators (and, or and not), array operations and <code>for</code> loops.</p>
+<p>The Lintilla translator targets a simple abstract machine which is a version of Landin’s highly influential <a href="https://en.wikipedia.org/wiki/SECD_machine">SECD machine</a>. An implementation of this machine is provided, so once your translator is working you will be able to run Lintilla programs.</p>
+<p>The framework repository provided for this assignment supports parsing and semantic analysis for the entire Lintilla language as described in the <code>README.md</code> file. It also contains an implementation of a Lintilla to SECD code translator which is able to translate all constructs of the Lintilla language <em>except</em> for those relating to logical operators, arrays and <code>for</code> loops. Before you start this assignment we strongly recommend that you should:</p>
+<ul>
+<li>Carefully read the latest version of the <code>README.md</code> file in the framework repository. This contains a full description of the syntactic (lexing and parsing) and semantic (name and type analysis) rules of the Lintilla language.</li>
+<li>Thoroughly peruse the <code>SyntacticAnalysis.scala</code>, <code>SemanticAnalysis.scala</code> and <code>Translator.scala</code> modules in the <code>src/main/scala</code> directory of the framework repository. Compare these to the corresponding modules that you wrote for the expression language in the workshops, and make sure you have understood how they work and what it do.</li>
+</ul>
+<p>Your translator is only expected to translate programs that have passed through the earlier phases of the compiler without producing any errors. In particular, you can assume that any source tree your translator will be presented with satisfies all of the semantic rules given in the <code>README.md</code> file.</p>
+<p>Extending this translator will give you insight into the way that source language features correspond to target language features. It will show you how abstract machines can be used to provide a run-time system for languages. You will also gain specific experience with how Lintilla is compiled and executed, which is similar in many respects to the implementation of full general-purpose functional programming languages. Once you have completed this assignment you will have a working implementation of Lintilla.</p>
+<p><strong>Please note:</strong> If this is your second attempt at COMP332, and you completed the Lintilla assignments in 2018, then please be aware that there are some important respects in which the compiler and runtime in this assignment are quite dissimilar to those that you worked on last year. So even if you are confident that you remember what was going on in last year’s assignment, you should take great care to read this documentation and the source code of the current Lintilla compiler before you commence this exercise. There are some very important respects in which the backend of this compiler has changed this year, and if you are not careful these changes are likely to trip you up.</p>
+<h3 id="the-secd-machine">The SECD machine</h3>
+<p>The “SECD” in the name SECD machine stands for Stack, Environment, Code and Dump. The interpreter that implements our SECD machine can be found in the file <code>SECDMachine.scala</code> (in the <code>src/main/scala</code> directory of the framework bundle). The instruction set of the SECD machine in defined in the <code>SECDTree.scala</code> module. The action of each SECD instruction is briefly described in the comments above the case class definition that defines that instruction type.</p>
+<p>In a practical programming language compiler the SECD code generated by the Lintilla compiler would not be executed by an interpreter. Instead a further compiler phase would translate it into much more efficient native machine code (possibly on the fly). A production compiler would also provide phases devoted to optimising the generated SECD code prior to its conversion into machine code.</p>
+<p>We can describe the activities of any computing machine, whether a abstract one like the SECD machine or an actual microprocessor, in terms of a <em>machine state</em> and a clear specification of how the <em>instructions</em> understood by that machine update that machine state when they are executed.</p>
+<p>The state of the SECD machine has four components, which are encapsulated in the following case class definition</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1"></a>    <span class="kw">case</span> <span class="kw">class</span> State(</span>
+<span id="cb1-2"><a href="#cb1-2"></a>        opnds: Stack,</span>
+<span id="cb1-3"><a href="#cb1-3"></a>        env: Environ,</span>
+<span id="cb1-4"><a href="#cb1-4"></a>        code: Frame,</span>
+<span id="cb1-5"><a href="#cb1-5"></a>        dump: Option[State]</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    ) <span class="kw">extends</span> Status</span></code></pre></div>
+<p>which you can find in the <code>SECDMachine.scala</code> module. These components perform the following roles:</p>
+<ul>
+<li><p><code>opnds: Stack</code> this is called the <em>operand stack</em>. It plays the role of the <em>addressable data registers</em> in a standard machine architecture. The instructions of the SECD machine pop their operands of this stack and push any results they compute back onto it. In that sense the SECD machine is closely related to the Java Virtual Machine (JVM), they are both <em>stack machines</em> rather than <em>register machines</em> (like the microprocessor in your laptop).</p></li>
+<li><p><code>env: Environ</code> this is called the <em>environment</em>. This is a map which associates named variables with the values they are currently bound to. At any point in the execution of a program this environment contains <em>bindings</em> for all of the variables that are currently in scope. When a function is called the values passed to the function will be bound to the names of the function arguments in the environment. When the body of the function refers to a name we will look it up in the current environment to get its value.</p></li>
+<li><p><code>code: Frame</code> this is called the <em>code dump</em>. This is the list of <em>machine instructions</em> to be executed. The next instruction to be executed is the first one in this list, and once its has been executed it is discarded from the front of the code dump list. You can think of the code dump as being analogous to the <em>program counter</em> of a microprocessor, since it always points to the next instruction to be executed (the one at the head of the code dump list). Indeed, in a practical and efficient implementation of the SECD machine we would simply represent the code dump as a program counter containing the address of the next instruction to execute.</p></li>
+<li><p><code>dump: Option[State]</code> this is called the <em>control dump</em> (or more simply just the <em>dump</em>). You should think of the control dump as being a stack of saved machine states, which is used to store the information required to return from a function call. In that way, the control dump carries out exactly the role played by the stack of execution frames used to manage local variables and return addresses in a conventional programming language.</p></li>
+</ul>
+<p>The operand stack of the SECD machine contains <em>machine values</em> of which there are 5 kinds. These are defined in the <code>SECDTree.scala</code> module and are represented as objects of the following classes which are children of the abstract <code>MValue</code> class:</p>
+<ul>
+<li><strong>Booleans</strong>, values <code>true</code> and <code>false</code> represented by objects of type <code>MBool</code>,</li>
+<li><strong>Integers</strong>, 32-bit signed numbers represented by objects of type <code>MInt</code>,</li>
+<li><strong>Arrays</strong>, mutable and extendable 1-d arrays of values of type <code>MValue</code> represented by objects of type <code>MArray</code>,</li>
+<li><strong>Closures</strong>, a function definition packaged up with a <em>referencing environment</em>, which captures the environment that was current when the closure was constructed and is used to provide values for the free variables in the body of the function. These are represented by objects of type <code>MClosure</code>, and</li>
+<li><strong>Continuations</strong>, records that contain a saved state of the SECD machine. These are represented by objects of type <code>MContinuation</code>.</li>
+</ul>
+<p>The first four of these kinds of machine values should be familiar to you from your programming / COMP332 experience. Continuations, however, are new and they provide a powerful mechanism for implementing a wide range of control structures, including loops, iterators, <code>try..catch</code> style exception handlers, and threads. In the SECD machine continuations are created by taking a “snapshot” of the current state of the machine, and they may be used later to reset, or <em>resume</em> the machine state back to that saved state. You can think of the process of creating a continuation as that of setting a label that refers to some point in the execution of a program. Later you can resume the continuation to jump back to that labelled point. Consequently, we will be using continuations in our translation of <code>for</code> loops.</p>
+<p>When the SECD machine is started the operand stack and the environment will be empty and the code dump will be initialised to contain the sequence of SECD instructions that comprise the program to execute. At each step of the execution the machine interpreter will look at the first instruction in the code sequence and decide what to do based on what that instruction is. In each case the instruction will update the machine state in some way. Execution will then continue with the next instruction in the sequence.</p>
+<h4 id="the-secd-calling-sequence">The SECD calling sequence</h4>
+<p>In the SECD machine it doesn’t really make sense to say that we call a function because, in order to execute the commands in its body we will also need to know what values to use for its free variables. In practice, those values are supplied by giving an environment in which to lookup free variables. This is, of course, the purpose of the environment that is stored, along with a function definition, inside a closure. So the SECD machine provides instructions to make closure values and to execute such closure values.</p>
+<p>The <code>IClosure</code> machine instruction creates a closure value and pushes it onto the operand stack. That closure encapsulates a list of formal parameter names and a list instructions (the <em>body</em> of the closure), which are specified in the <code>IClosure</code> instruction itself. It also <em>captures</em> the machine environment that is current at the point where the <code>IClosure</code> instruction is executed.</p>
+<p>When the <code>ICall</code> machine instruction is executed it pops a closure value off the top of the operand stack, then:</p>
+<ol type="1">
+<li>pops sufficient values from the operand stack to act as actual parameters to be bound to the formal parameters of the closure,</li>
+<li>makes a copy of the resulting state of the of the machine and pushes that onto the control dump,</li>
+<li>empties the operand stack,</li>
+<li>replaces the environment with one constructed by adding the bindings of formal to actual parameters to the environment stored in the closure, and</li>
+<li>replaces the code dump with the list of instructions stored in the closure.</li>
+</ol>
+<p>After that it the commences execution of the new contents of the code dump, that is to say it proceeds to execute the body of closure. When the last instruction in the code dump is executed, leaving it empty, the machine takew the following actions:</p>
+<ol type="1">
+<li>pop the first saved state from the control dump,</li>
+<li>set the environment, code dump and control dump to those stored in that saved state, and</li>
+<li>add the values in the operand stack to the operand stack in the saved state and make that extended stack the new operand stack.</li>
+</ol>
+<p>These steps leave the machine in the state it was in after the instruction pointer was advanced but just before the <code>ICall</code> instruction was executed, with the actual parameters popped from the stack and the return results of closure execution pushed onto it.</p>
+<h4 id="continuations">Continuations</h4>
+<p>A <em>continuation</em> value is, quite simply, nothing more than a machine value that contains a saved state of the SECD machine. These are just like the saved machine states stored in control dump, except that they can be pushed onto the operand stack and can be manipulated directly by certain machine instructions.</p>
+<p>Continuation values can be created using the <code>ICallCC</code> instruction, which stands for <em>call with current continuation</em>. The idea is that <code>ICallCC</code> acts very much like <code>ICall</code>, except that it handles the binding of formal parameters to actual parameters in a slightly different way:</p>
+<ol type="1">
+<li>If the closure being called takes <code>n</code> parameters then only <code>n-1</code> values are popped from the operand stack and these are bound to the first <code>n-1</code> formal parameters of the closure.</li>
+<li>When the saved machine state is pushed onto the control dump it is also made into a continuation machine value and bound to the last parameter of the closure.</li>
+</ol>
+<p>Consequently, if we call a closure using <code>ICallCC</code> we can access the machine state that will eventually be used to return from the function directly; by accessing the last parameter of the closure.</p>
+<p>This becomes particularly useful in combination with the <code>IResume</code> instruction, which is executed as follows:</p>
+<ol type="1">
+<li>pop a continuation value from the operand stack,</li>
+<li>set the environment, code dump and control dump to those stored in the state saved in the continuation, and</li>
+<li>add the values in the operand stack to the operand stack in the saved state and make that extended stack the new operand stack.</li>
+</ol>
+<p>These actions should be compared with the process of returning after executing the body of a closure, as described in the last section. The only difference is that the return process takes its return information from the control dump whereas <code>IResume</code> takes it from a continuation on the top of the control stack.</p>
+<p>So why is this important? Well for one thing we can capture the return continuation of a closure call and use it, and <code>IResume</code>, at any point in the closure body to return early. This allows us to add a <code>return</code> construct to Lintilla, which could be used return a value from any point within a function body.</p>
+<p>More profoundly, however, continuations are just like any other SECD machine value and, in particular, they can be returned from the the closures that capture them and used outside of the body of that closure. Resuming a continuation that has been liberated from its capturing closure has the effect of “jumping back” to the point just after the original closure call that created the continuation. This provides us with a very general mechanism for marking points in the execution of a program and jumping back to those points from anywhere else.</p>
+<p>This mechanism is used in the following SECD machine code:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">IClosure</span>(</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    None,                     <span class="co">// The name of the closure created.</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>    List(<span class="st">&quot;_continuation&quot;</span>),    <span class="co">// Formal parameter list</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>    List(                     <span class="co">// Start of the closure body.</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>        <span class="fu">IVar</span>(<span class="st">&quot;_continuation&quot;</span>) <span class="co">// Push the captured closure on the operand stack.</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>    )                         <span class="co">// Return contents of operand stack to the caller.</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>),</span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="fu">ICallCC</span>(),                    <span class="co">// Capture the continuation of the current instruction, </span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>                                <span class="co">// bind it to the parameter &quot;_continuation&quot; of the closure </span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>                                <span class="co">// on the operand stack and execute the closure body.</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co">// At this point the continuation captured by the last call is </span></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="co">// on the top of the operand stack.</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="fu">IClosure</span>(</span>
+<span id="cb2-16"><a href="#cb2-16"></a>    None,</span>
+<span id="cb2-17"><a href="#cb2-17"></a>    List(<span class="st">&quot;_label&quot;</span>),             <span class="co">// This parameter will be bound to the continuation</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>                                <span class="co">// left on the operand stack by the ICallCC on line 8.</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>    List(                       <span class="co">// Start of closure body</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>        <span class="fu">IInt</span>(<span class="dv">0</span>),                <span class="co">// Push 0 on the operand stack.</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>        <span class="fu">IPrint</span>(),               <span class="co">// Print the value (0) on the top of the operand stack.</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>        <span class="fu">IVar</span>(<span class="st">&quot;_label&quot;</span>),         <span class="co">// Push the value bound to _label onto the operand stack...</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a>        <span class="fu">IVar</span>(<span class="st">&quot;_label&quot;</span>),         <span class="co">// ... twice</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>        <span class="fu">IResume</span>()               <span class="co">// Resume the continuation on the top of the operand stack</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>                                <span class="co">// returning the first copy of that same continuation that</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>                                <span class="co">// was also pushed onto the stack.</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a>    )</span>
+<span id="cb2-28"><a href="#cb2-28"></a>),</span>
+<span id="cb2-29"><a href="#cb2-29"></a><span class="fu">ICall</span>()</span></code></pre></div>
+<p>The effect of this code is to capture a continuation which “labels” the instruction just after the <code>ICallCC</code> instruction, bind that continuation to variable <code>_label</code> and then resume it in order to jump back to the point just after the <code>ICallCC</code>. In other words, this code loops forever printing the number 0.</p>
+<p>We can be a little more sneaky and use a slightly modified form of the last example to increment and print a counter on each iteration:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">IClosure</span>(</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    None,</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    List(<span class="st">&quot;_continuation&quot;</span>),</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    List(</span>
+<span id="cb3-5"><a href="#cb3-5"></a>        <span class="fu">IInt</span>(<span class="dv">0</span>),</span>
+<span id="cb3-6"><a href="#cb3-6"></a>        <span class="fu">IVar</span>(<span class="st">&quot;_continuation&quot;</span>)</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    )</span>
+<span id="cb3-8"><a href="#cb3-8"></a>),</span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="fu">ICallCC</span>(),                       <span class="co">// this call returns two values on the stack,</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>                                    <span class="co">// a count and the continuation to jump back to.</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="fu">IClosure</span>(</span>
+<span id="cb3-12"><a href="#cb3-12"></a>    None,</span>
+<span id="cb3-13"><a href="#cb3-13"></a>    List(<span class="st">&quot;_count&quot;</span>, <span class="st">&quot;_label&quot;</span>),    <span class="co">// Parameters to bind the count and continuation to.</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a>    List(</span>
+<span id="cb3-15"><a href="#cb3-15"></a>        <span class="fu">IVar</span>(<span class="st">&quot;_count&quot;</span>),</span>
+<span id="cb3-16"><a href="#cb3-16"></a>        <span class="fu">IPrint</span>(),                <span class="co">// Print the current count.</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a>        <span class="fu">IVar</span>(<span class="st">&quot;_count&quot;</span>),</span>
+<span id="cb3-18"><a href="#cb3-18"></a>        <span class="fu">IInt</span>(<span class="dv">1</span>),</span>
+<span id="cb3-19"><a href="#cb3-19"></a>        <span class="fu">IAdd</span>(),                  <span class="co">// Leave current count + 1 on operand stack.</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a>        <span class="fu">IVar</span>(<span class="st">&quot;_label&quot;</span>),          <span class="co">// Push the continuation bound to _label onto the stack...</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a>        <span class="fu">IVar</span>(<span class="st">&quot;_label&quot;</span>),          <span class="co">// ...twice.</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a>        <span class="fu">IResume</span>()                <span class="co">// And resume it to jump back to the point just after</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a>                                    <span class="co">// the ICallCC instruction, leaving the new count</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a>                                    <span class="co">// and the _label continuation on the operand stack</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a>                                    <span class="co">// for the next iteration. </span></span>
+<span id="cb3-26"><a href="#cb3-26"></a>    )</span>
+<span id="cb3-27"><a href="#cb3-27"></a>),</span>
+<span id="cb3-28"><a href="#cb3-28"></a><span class="fu">ICall</span>()</span></code></pre></div>
+<p>This structure will form the basis of our translation of <code>for</code> loops. It might seem a little mind bending, but please don’t worry. You won’t need to understand much about continuations to implement the <code>for</code> translation we will describe below.</p>
+<h4 id="secd-machine-instructions">SECD machine instructions</h4>
+<p>The SECD machine instructions are defined in the file <code>SECTree.scala</code>. There are the following instruction types:</p>
+<ul>
+<li><p>Push value instructions (<code>IBool</code>, <code>IInt</code> or <code>IArray</code>): Push a single Boolean, integer or (empty) array value onto the operand stack.</p></li>
+<li><p>Push variable instruction (<code>IVar</code>): Push the value of a given variable onto the operand stack. This variable must be bound in the current environment, otherwise the machine halts with an <em>unknown variable</em> error.</p></li>
+<li><p>Arithmetic instructions: (<code>IAdd</code>, <code>IDiv</code>, <code>IMul</code> and <code>ISub</code>): Pop two integers off the operand stack, perform the given operation on them and push the result onto the operand stack. The first value popped will be the right operand of the operation and the second value popped will be the left operand. The machine will halt if the top of the operand stack does not contain two integer values. If the instruction is <code>IDiv</code> the machine will halt with an error if the right operand is zero.</p></li>
+<li><p>Equality instruction: (<code>IEqual</code>): Pop two values off the operand stack, compare them for equality and push the result of the comparison as a Boolean onto the operand stack. The machine will halt if the top of the operand stack does not contain two values that are either both integers or both Booleans.</p></li>
+<li><p>Less than instruction: (<code>ILess</code>): Pop two values off the operand stack, compare them for equality and push the result of the comparison as a Boolean onto the operand stack. The first value popped will be the right operand of the operation and the second value popped will be the left operand. The machine will halt if the top of the operand stack does not contain two integer values.</p></li>
+<li><p>Print instruction: (<code>IPrint</code>): Pop a value off the operand stack and print it. The machine will halt if there is no value on the operand stack.</p></li>
+<li><p>Branch instruction: (<code>IBranch</code>): The instruction contains two code sequences (also called <em>frames</em> in the code). Pop a Boolean value from the operand stack. If the popped value is true continue execution with the first code sequence from the instruction; otherwise continue with the second code sequence. The machine will halt if the top of the operand stack does not contain a Boolean value.</p></li>
+<li><p>Closure instruction: (<code>IClosure</code>): The instruction contains a (possibly empty) list of argument names, and a sequence of instructions that constitute the body of a function. When this instruction is executed it pushes a closure value onto the operand stack that represents this function. The closure will contain the list of parameter names, the body code sequence, and the current environment (top of the environment stack). The environment value is therefore <em>captured</em> so that it can be used later to look up the values of free variables in the function body when the function is called. The machine will halt if the environment stack is empty, since in that case there will be no environment to capture.</p></li>
+<li><p>Call instruction: (<code>ICall</code>): Pop a value from the operand stack; this value must be an closure value, since it will provide the function that is called. Then pop one value from the operand stack for each forma; parameter of that closure, and continue execution of the closure body with the closure’s parameters bound to these values. Arguments to this call should be pushed into the stack in the order that they occur in the function call. So the first argument is the first to be pushed into the stack. The machine will halt if the first value popped isn’t a closure <em>or</em> if the operand stack doesn’t contain as many values as that function call requires as arguments. This behaviour of this instruction is described in more detail above.</p></li>
+<li><p>Array instructions (<code>IArray</code>, <code>IDeref</code>, <code>ILength</code>, <code>IUpdate</code> and <code>IAppend</code>): These create and manipulate 1-dimensional mutable arrays; they have the following effects when executed:</p>
+<ul>
+<li><code>IArray</code>: make a new empty array value and push it onto the operand stack.</li>
+<li><code>IDeref</code>: pop an integer index and an array from the top of the operand stack (in that order) and push the value found in that array at the given index back onto the stack.</li>
+<li><code>ILength</code>: pop an array value from the top of the operand stack and push its length, an integer, onto the stack in its place.</li>
+<li><code>IUpdate</code>: pop a value (of any type), an integer index and an array from the top of the operand stack and update the cell of that array at the given index to contain the specified value.</li>
+<li><code>IAppend</code>: pop a value (of any type) and an array from the top of the operand stack and extend the array by adding the given value to its end.</li>
+</ul></li>
+<li><p>Operand stack manipulation instructions (<code>IDropAll</code>): These act on the operand stack to move entries around on the top of the stack or to remove and discard entries. At the moment the only such operation provided is <code>IDropAll</code> which empties the operand stack entirely. This is largely used in situations where we want to clear the operand stack prior to pushing return values to return from a function call.</p></li>
+<li><p>Continuation operations (<code>ICallCC</code> and <code>IResume</code>): These provide facilities for capturing the current machine state as a continuation value in the operand stack and then returning the machine to that save state at a later time. These are described in much greater detail above.</p></li>
+</ul>
+<p><strong>Note that</strong> many of these instructions can cause fatal errors which will abruptly halt the execution of the SECD machine. For example, if an <code>IAdd</code> instruction does not find two integer values on the top of the operand stack the SECD machine will immediately stop and print <code>&quot;FatalError: &quot;int and int expected in IAdd&quot;</code>. In normal operation of the SECD machine, however, the only fatal error that should ever be raised is an array index out of bounds. All other error conditions should never be produced by “correct” SECD code generated by the Lintilla compiler.</p>
+<p>For example, if the Lintilla compiler generates an <code>IAdd</code> instruction then it must have previously generated code to push its two integer operands onto the operand stack. So when the <code>IAdd</code> instruction is executed we can guarantee that the top of the operand stack does indeed contain two integers. In principle, if we have correctly designed and implemented the Lintilla compiler we should be able to write a <em>mathematical proof</em> that shows that any Lintilla program that passes the semantic rules of the language will be translated into SECD code which cannot generate any fatal errors except for array indexing ones.</p>
+<h3 id="translating-lintilla-to-the-secd-machine">Translating Lintilla to the SECD machine</h3>
+<p>This section describes how translator given in the framework repository translates Lintilla code (except for logical operators, arrays and <code>for</code> loops) to SECD machine instructions. The more routine parts of this translation are as follows:</p>
+<ol type="1">
+<li><p>Boolean expressions, integer expressions and applied occurrences of identifiers translate into instances of <code>IInt</code>, <code>IBool</code> or <code>IVar</code> instructions, which push the relevant values onto the operand stack.</p></li>
+<li><p>Arithmetic operations, equality and less-then comparisons translate into SECD code to push each of their operands onto the operand stack, followed by the relevant machine operation. Left hand operands are evaluated before right hand ones, so when the code generated from the expression</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1"></a><span class="op">{</span> print <span class="dv">10</span>; <span class="dv">10</span> <span class="op">}</span> + <span class="op">{</span> print <span class="dv">5</span>; <span class="dv">5</span> <span class="op">}</span></span></code></pre></div>
+<p>is executed it prints the number <code>10</code> before it prints the number <code>5</code>.</p></li>
+<li><p>An <code>if</code> expression translates into SECD code to evaluate its condition followed by an <code>IBranch</code> instruction containing the SECD machine code generated from its <em>then</em> and <em>else</em> clauses. So the expression <code>if (cond) { then_code } else { else_code }</code> translates to:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb5-1"><a href="#cb5-1"></a>&lt;SECD code translated from cond&gt;,</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">IBranch</span>(</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    &lt;SECD code translated from then_code&gt;,</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    &lt;SECD code translated from else_code&gt;</span>
+<span id="cb5-5"><a href="#cb5-5"></a>)</span></code></pre></div></li>
+<li><p>A <code>print</code> expression should translate into SECD code to evaluate its operand expression followed by an <code>IPrint</code> instruction. So the expression <code>print exp</code> translates to:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb6-1"><a href="#cb6-1"></a>&lt;SECD code translated from exp&gt;,</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">IPrint</span>()</span></code></pre></div></li>
+<li><p>An application expression should translate into SECD code to evaluate each one of its arguments, in order, followed by SECD code that evaluates its function component, and followed by an <code>ICall</code> instruction. In other words, a function call <code>f(e_1,...,e_n)</code> should translate to code of the following form:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb7-1"><a href="#cb7-1"></a>&lt;SECD code translation of e_<span class="dv">1</span>&gt;,</span>
+<span id="cb7-2"><a href="#cb7-2"></a>&lt;SECD code translation of e_<span class="dv">2</span>&gt;,</span>
+<span id="cb7-3"><a href="#cb7-3"></a>...</span>
+<span id="cb7-4"><a href="#cb7-4"></a>&lt;SECD code translation of e_n&gt;,</span>
+<span id="cb7-5"><a href="#cb7-5"></a>&lt;SECD code translation of f&gt;,</span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="fu">ICall</span>()</span></code></pre></div></li>
+<li><p>A function declaration</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb8-1"><a href="#cb8-1"></a>fn <span class="fu">f</span>(v_<span class="dv">1</span> : type_<span class="dv">1</span>,..., v_n : type_n) -&gt; <span class="kw">type</span> {</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    body</span>
+<span id="cb8-3"><a href="#cb8-3"></a>}</span></code></pre></div>
+<p>should translate to the following instruction</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">IClosure</span>(</span>
+<span id="cb9-2"><a href="#cb9-2"></a>    Some(<span class="st">&quot;f&quot;</span>),</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    List(<span class="st">&quot;v_1&quot;</span>,...,<span class="st">&quot;v_n&quot;</span>),</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    &lt;SECD code translation of body&gt;</span>
+<span id="cb9-5"><a href="#cb9-5"></a>)</span></code></pre></div>
+<p>followed by code to bind the identifier <code>f</code> (in the remainder of the current block) to the closure object that is pushed onto the stack by this instruction. We shall discuss the construction of that binding code a little later.</p></li>
+<li><p>A <code>let</code> declaration should translate to code that evaluates its initialisation expression and then binds the resulting value on the stack to the specified identifier. We examine this binding translation next.</p></li>
+</ol>
+<p>The tricky part of this translation involves the translation of sequences of expressions (at the top level or within a block) which contain <code>let</code> and <code>fn</code> declarations. Suppose that we are given a sequence of expressions that comprise some section of the body of a block (or of the whole program) from some expression onwards to the end of the block:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1"></a>expression_1;</span>
+<span id="cb10-2"><a href="#cb10-2"></a>expression_2;</span>
+<span id="cb10-3"><a href="#cb10-3"></a>...</span>
+<span id="cb10-4"><a href="#cb10-4"></a>expression_n</span></code></pre></div>
+<p>Then, generally speaking, we would simply translate this sequence by translating each individual expression in turn and concatenating the results:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb11-1"><a href="#cb11-1"></a>&lt;SECD code translation of expression_<span class="dv">1</span>&gt;</span>
+<span id="cb11-2"><a href="#cb11-2"></a>&lt;SECD code translation of expression_<span class="dv">2</span>&gt;</span>
+<span id="cb11-3"><a href="#cb11-3"></a>...</span>
+<span id="cb11-4"><a href="#cb11-4"></a>&lt;SECD code translation of expression_<span class="dv">1</span>&gt;</span></code></pre></div>
+<p>Were we to represent this sequence of expressions as a list <code>exp :: rest</code>, comprising the first expression <code>exp</code> and the list of remaining expressions <code>rest</code>, then we might express this translation as a recursive template:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb12-1"><a href="#cb12-1"></a>&lt;SECD code translation of the sequence exp :: rest&gt; =&gt;</span>
+<span id="cb12-2"><a href="#cb12-2"></a>    &lt;SECD code translation of the expression exp&gt;</span>
+<span id="cb12-3"><a href="#cb12-3"></a>    &lt;SECD code translation of the sequence rest&gt;</span></code></pre></div>
+<p>Another way of looking at this is that we could write a recursive translation function to do this task. This might look something like</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">def</span> <span class="fu">translateSeq</span>(list : List[Expression]) {</span>
+<span id="cb13-2"><a href="#cb13-2"></a>    list <span class="kw">match</span> {</span>
+<span id="cb13-3"><a href="#cb13-3"></a>        <span class="kw">case</span> (exp :: rest) =&gt;</span>
+<span id="cb13-4"><a href="#cb13-4"></a>        <span class="fu">translateExp</span>(exp)</span>
+<span id="cb13-5"><a href="#cb13-5"></a>        <span class="fu">translateSeq</span>(rest)</span>
+<span id="cb13-6"><a href="#cb13-6"></a>        <span class="kw">case</span> _ =&gt; ()</span>
+<span id="cb13-7"><a href="#cb13-7"></a>    }</span>
+<span id="cb13-8"><a href="#cb13-8"></a>}</span></code></pre></div>
+<p>where <code>translateExp</code> is a function to translate a single expression and add the generated code to an instruction buffer (as we did in the translation code for the expression language).</p>
+<p>We must, however, adjust this translation in the case where the first expression <code>exp</code> in a list of expressions is a <code>let</code> or a <code>fn</code>. The partial translations of <code>let</code> and <code>fun</code> given above leave a value on the top of the stack, and that value should be popped and bound to a variable whose scope extends over the translations of the remaining expressions in <code>rest</code>. A quick perusal of the SECD machine code, however, reveals that the only way we have to bind a variable to a value on the stack is to call a closure that has that variable as its parameter.</p>
+<p>This leads us to conclude that if the first expression <code>exp</code> is a <code>let</code> or <code>fn</code> declaration then we should modify our translation of <code>exp :: rest</code> as follows:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb14-1"><a href="#cb14-1"></a>&lt;SECD code translation of the sequence exp :: rest&gt; =&gt;</span>
+<span id="cb14-2"><a href="#cb14-2"></a>    &lt;(partial) SECD code translation of exp discussed above&gt;</span>
+<span id="cb14-3"><a href="#cb14-3"></a>    <span class="fu">IClosure</span>(</span>
+<span id="cb14-4"><a href="#cb14-4"></a>        None,</span>
+<span id="cb14-5"><a href="#cb14-5"></a>        List(&lt;var_name&gt;),   <span class="co">// &lt;var_name&gt; = name of the variable to bind.</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>        &lt;SECD code translation of the sequence rest&gt;</span>
+<span id="cb14-7"><a href="#cb14-7"></a>    ),</span>
+<span id="cb14-8"><a href="#cb14-8"></a>    <span class="fu">ICall</span>()</span></code></pre></div>
+<p>In other words, this code will push the value to be bound onto the stack, then it will push a closure containing the SECD code generated from the subsequent expressions, and finally it executes a call to execute that closure. This translation can be implemented by adding two specialised cases (for <code>LetDecl</code> and <code>FnDecl</code>) nodes to the <code>match</code> expression in the function <code>translateSeq</code> above.</p>
+<h4 id="translation-example">Translation Example</h4>
+<p>As a simple example of translation, consider this Lintilla program:</p>
+<pre><code>print 3 * (12 / 4)</code></pre>
+<p>This program would be translated into the followed SECD machine code:</p>
+<pre><code>List(IInt(3), IInt(12), IInt(4), IDiv(), IMul(), IPrint())</code></pre>
+<p>As a more complex translation example, consider the following Lintilla program</p>
+<pre><code>let x = 100;
+print x;
+fn inc (a : int) -&gt; int { a + 1 };
+print inc(x)</code></pre>
+<p>which should print numbers <code>100</code> and <code>101</code> when executed.</p>
+<p>Here is the SECD machine code that is the translation of this program. The comments in the code are there to assist your understanding; they are not part of the code itself.</p>
+<pre><code>List(
+    IInt(100),                 // Translation of the initialisation expression on line 1
+    IClosure(                  // Create closure to bind the variable &#39;x&#39;.
+        None,
+        List(&quot;x&quot;),
+        List(                  // Frame containing translation of lines 2-4.
+            IVar(&quot;x&quot;),
+            IPrint(),
+            IClosure(          // Create closure implementing the function &#39;inc&#39; 
+                Some(&quot;inc&quot;),
+                List(&quot;a&quot;),
+                List(
+                    IVar(&quot;a&quot;), // List of instructions translated from body of &#39;inc&#39;
+                    IInt(1), 
+                    IAdd())), 
+            IClosure(          // Create closure to bind the variable &#39;inc&#39;
+                None,
+                List(&quot;inc&quot;),
+                List(          // Frame containing translation of line 4
+                    IVar(&quot;x&quot;), 
+                    IVar(&quot;inc&quot;), 
+                    ICall(), 
+                    IPrint()))
+            ICall())),         // Call to bind &#39;inc&#39;
+    ICall())                   // Call to bind &#39;x&#39;</code></pre>
+<p>The <code>src/test/resources</code> contains the sources of a handful of Lintilla programs along with the output generated when we compiled and executed them using our reference compiler. These are provided as resources for further investigating the relationship between pieces of Lintilla code and the SECD code they translate to.</p>
+<h3 id="translations-of-logical-operators-array-operations-and-for-loops.">Translations of logical operators, array operations and <code>for</code> loops.</h3>
+<p>Your task is to extend the Lintilla translator, in the <code>Translator.scala</code> module, to translate:</p>
+<ul>
+<li>Logical operators, and (<code>&amp;&amp;</code>), or (<code>||</code>) and not (<code>~</code>),</li>
+<li>Array operations, for creating new arrays (<code>array</code>), dereferencing values in arrays (<code>!</code>), appending values to the end of arrays (<code>+=</code>) and assigning new values to array entries (<code>:=</code>),</li>
+<li>For loops, comprising the <code>for</code> loops itself and the associated <code>loop</code> operation, which terminates the current iteration of the smallest enclosing <code>for</code> loop and starts the next one, and <code>break</code> operation, which exits the smallest enclosing <code>for</code> loop.</li>
+</ul>
+<p>Your translator should translate these constructs as follows:</p>
+<h3 id="logical-operators">Logical operators</h3>
+<p>The logical operators <code>&amp;&amp;</code>, <code>||</code> and <code>~</code> should be implemented using the <em>short circuit evaluation</em> approach discussed in the lectures, so:</p>
+<ul>
+<li>An expression <code>b_1 &amp;&amp; b_2</code> should be executed by evaluating <code>b_1</code> and if that gives the value:
+<ul>
+<li><code>true</code> then evaluate <code>b_2</code> a boolean value and return that as the result of the overall expression, or</li>
+<li><code>false</code> then return <code>false</code> as the result of the overall expression, without evaluating <code>b_2</code>.</li>
+</ul></li>
+<li>An expression <code>b_1 !! b_2</code> should be executed by evaluating <code>b_1</code> and if that gives the value:
+<ul>
+<li><code>true</code> then return <code>true</code> as the result of the overall expression, without evaluating <code>b_2</code>, or</li>
+<li><code>false</code> then evaluate <code>b_2</code> to a boolean value and return that as the result of the overall expression.</li>
+</ul></li>
+<li>An expression <code>~b</code> should be executed by evaluating <code>b</code> and if that gives the value:
+<ul>
+<li><code>true</code> then return <code>false</code> as the result of the overall expression, or</li>
+<li><code>false</code> then return <code>true</code> as the result of the overall expression.</li>
+</ul></li>
+</ul>
+<p>In particular, this means that if we evaluate an expression like</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb19-1"><a href="#cb19-1"></a><span class="op">{</span> print <span class="cn">true</span>; <span class="cn">true</span> <span class="op">}</span> || <span class="op">{</span> print <span class="cn">false</span>; <span class="cn">false</span> <span class="op">}</span></span></code></pre></div>
+<p>then the result returned would be <code>true</code> and the single line</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb20-1"><a href="#cb20-1"></a><span class="cn">true</span></span></code></pre></div>
+<p>would be printed. On the other hand, when we evaluate the expression</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb21-1"><a href="#cb21-1"></a><span class="op">{</span> print <span class="cn">false</span>; <span class="cn">false</span> <span class="op">}</span> || <span class="op">{</span> print <span class="cn">true</span>; <span class="cn">true</span> <span class="op">}</span></span></code></pre></div>
+<p>then the result returned would again be <code>true</code> but this time the two lines</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb22-1"><a href="#cb22-1"></a><span class="cn">false</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="cn">true</span></span></code></pre></div>
+<p>would be printed. In each case this semantics can be implemented using the <code>IBranch</code> instruction. For example, we could translate an expression <code>b_1 &amp;&amp; b_2</code> into the code sequence:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb23-1"><a href="#cb23-1"></a>&lt;SECD code translation of b_<span class="dv">1</span>&gt;</span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">IBranch</span>(</span>
+<span id="cb23-3"><a href="#cb23-3"></a>    &lt;SECD code translation of b_<span class="dv">2</span>&gt;,</span>
+<span id="cb23-4"><a href="#cb23-4"></a>    List(<span class="fu">IBool</span>(<span class="kw">false</span>))</span>
+<span id="cb23-5"><a href="#cb23-5"></a>)</span></code></pre></div>
+<p>We will leave it up to you to work out translation schemes for <code>||</code> and <code>~</code> along similar lines. You should describe the translation schemes you design for these logical operators in your report, using the kind of notation we have used for our translation schemes above.</p>
+<h3 id="array-operations">Array operations</h3>
+<p>The array operations that you should provide translations for are:</p>
+<ul>
+<li><code>array t</code> which creates and returns a new empty array which can contain elements of type <code>t</code>.</li>
+<li><code>v!i</code> which evaluates to the value stored in the <code>i</code>th entry of the array <code>v</code>.</li>
+<li><code>v!i := e</code> which evaluates the expression <code>e</code> and puts the resulting value into the <code>i</code>th entry of the array <code>v</code>.</li>
+<li><code>v += e</code> which evaluates the expression <code>e</code> and appends the resulting value to the end of the array <code>v</code>, extending its length by 1.</li>
+<li><code>length(v)</code> which returns the number of entries in the array <code>v</code>.</li>
+</ul>
+<p>These operations roughly correspond to the SECD machine instructions <code>IArray</code>, <code>IDeref</code>, <code>IUpdate</code>, <code>IAppend</code> and <code>ILength</code>. The translation of one these constructs is a simple matter of generating code to evaluate each of it operands in turn and then adding the corresponding SECD machine instruction to the end of the resulting code sequence. In each case the operands of these constructs should be evaluated in order from left to right.</p>
+<p>One thing to note is that the semantic analyser ensures that the only expression that can legally occur on the left hand side of an assignment (<code>:=</code>) is a dereference (or pling <code>!</code>) expression. So you may treat the expression <code>v!i := e</code> as a single ternary operator and translated it using a case matching clause of the form:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">case</span> <span class="fu">AssignExp</span>(<span class="fu">DerefExp</span>(v, i), e) =&gt; ...</span></code></pre></div>
+<p>We leave the details of these translation schemes to you. Again, you should describe the translation schemes you design for these array operators in your report, using the kind of notation we have used for our translation schemes above.</p>
+<h3 id="for-loops-loop-and-break-operations"><code>for</code> loops, <code>loop</code> and <code>break</code> operations</h3>
+<p>Lintilla’s <code>for</code> loops are translated using a variant of the continuation based loop examples we discussed above. In order to describe this translation we start by reminding you of the syntax of the <code>for</code> loop, which is given by the production:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb25-1"><a href="#cb25-1"></a>forexp <span class="op">:</span> <span class="st">&quot;for&quot;</span> idndef <span class="st">&quot;=&quot;</span> logexp <span class="st">&quot;to&quot;</span> logexp (<span class="st">&quot;step&quot;</span> logexp)<span class="op">?</span> <span class="st">&quot;do&quot;</span> block</span></code></pre></div>
+<p>Loops satisfying this syntax are represented by nodes in the abstract syntax tree whose structure is defined by the following case class declaration:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">case</span> <span class="kw">class</span> <span class="fu">ForExp</span>(</span>
+<span id="cb26-2"><a href="#cb26-2"></a>    idn: IdnDef,</span>
+<span id="cb26-3"><a href="#cb26-3"></a>    from: Expression,</span>
+<span id="cb26-4"><a href="#cb26-4"></a>    to: Expression,</span>
+<span id="cb26-5"><a href="#cb26-5"></a>    step: Option[Expression],</span>
+<span id="cb26-6"><a href="#cb26-6"></a>    body: Block</span>
+<span id="cb26-7"><a href="#cb26-7"></a>) <span class="kw">extends</span> Expression</span></code></pre></div>
+<p>One thing to note here is that the semantic rules of Lintilla say the following about the optional step expression:</p>
+<ul>
+<li>when it is present it should be a constant (integer) expression, and</li>
+<li>when it is absent the step is taken to default to 1.</li>
+</ul>
+<p>Constant integer expressions are those containing only arithmetic operators and constant integers. They can, and the step expression should, be evaluated at translation time to a single integer, using the simple recursive function <code>evalIntConst</code> provided in the <code>Translator.scala</code> module.</p>
+<p>Now a <code>for</code> expression represented by a Lintilla tree node <code>ForExp(IdnDef(control_var), from, to, step, body)</code> should translate to the following SECD code:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb27-1"><a href="#cb27-1"></a> <span class="dv">1</span>: &lt;SECD code translation of from&gt;</span>
+<span id="cb27-2"><a href="#cb27-2"></a> <span class="dv">2</span>: &lt;SECD code translation of to&gt;</span>
+<span id="cb27-3"><a href="#cb27-3"></a> <span class="dv">3</span>: <span class="fu">IClosure</span>(</span>
+<span id="cb27-4"><a href="#cb27-4"></a> <span class="dv">4</span>:     None,</span>
+<span id="cb27-5"><a href="#cb27-5"></a> <span class="dv">5</span>:     List(<span class="st">&quot;_from&quot;</span>, <span class="st">&quot;_to&quot;</span>, <span class="st">&quot;_break_cont&quot;</span>),</span>
+<span id="cb27-6"><a href="#cb27-6"></a> <span class="dv">6</span>:     List(</span>
+<span id="cb27-7"><a href="#cb27-7"></a> <span class="dv">7</span>:         <span class="fu">IClosure</span>(</span>
+<span id="cb27-8"><a href="#cb27-8"></a> <span class="dv">8</span>:             None,</span>
+<span id="cb27-9"><a href="#cb27-9"></a> <span class="dv">9</span>:             List(<span class="st">&quot;_loop_cont&quot;</span>),</span>
+<span id="cb27-10"><a href="#cb27-10"></a><span class="dv">10</span>:             List(</span>
+<span id="cb27-11"><a href="#cb27-11"></a><span class="dv">11</span>:                 <span class="fu">IVar</span>(<span class="st">&quot;_from&quot;</span>),</span>
+<span id="cb27-12"><a href="#cb27-12"></a><span class="dv">12</span>:                 <span class="fu">Ivar</span>(<span class="st">&quot;_loop_count&quot;</span>)</span>
+<span id="cb27-13"><a href="#cb27-13"></a><span class="dv">13</span>:             )</span>
+<span id="cb27-14"><a href="#cb27-14"></a><span class="dv">14</span>:         ),</span>
+<span id="cb27-15"><a href="#cb27-15"></a><span class="dv">15</span>:         <span class="fu">ICallCC</span>(),</span>
+<span id="cb27-16"><a href="#cb27-16"></a><span class="dv">16</span>:         <span class="fu">IClosure</span>(</span>
+<span id="cb27-17"><a href="#cb27-17"></a><span class="dv">17</span>:             None,</span>
+<span id="cb27-18"><a href="#cb27-18"></a><span class="dv">18</span>:             List(control_var, <span class="st">&quot;_loop_cont&quot;</span>),</span>
+<span id="cb27-19"><a href="#cb27-19"></a><span class="dv">19</span>:             List(</span>
+<span id="cb27-20"><a href="#cb27-20"></a><span class="dv">20</span>:                 &lt;SECD code to test <span class="kw">for</span> loop <span class="fu">termination</span> (see below)&gt;,</span>
+<span id="cb27-21"><a href="#cb27-21"></a><span class="dv">21</span>:                 <span class="fu">IBranch</span>(</span>
+<span id="cb27-22"><a href="#cb27-22"></a><span class="dv">22</span>:                     List(</span>
+<span id="cb27-23"><a href="#cb27-23"></a><span class="dv">23</span>:                         <span class="fu">IVar</span>(<span class="st">&quot;_break_cont&quot;</span>),</span>
+<span id="cb27-24"><a href="#cb27-24"></a><span class="dv">24</span>:                         <span class="fu">IResume</span>()</span>
+<span id="cb27-25"><a href="#cb27-25"></a><span class="dv">25</span>:                     ),</span>
+<span id="cb27-26"><a href="#cb27-26"></a><span class="dv">26</span>:                     List()</span>
+<span id="cb27-27"><a href="#cb27-27"></a><span class="dv">27</span>:                 ),</span>
+<span id="cb27-28"><a href="#cb27-28"></a><span class="dv">28</span>:                 &lt;SECD code translation of body&gt;,</span>
+<span id="cb27-29"><a href="#cb27-29"></a><span class="dv">29</span>:                 <span class="fu">IVar</span>(control_var),</span>
+<span id="cb27-30"><a href="#cb27-30"></a><span class="dv">30</span>:                 <span class="fu">IInt</span>(step_value),</span>
+<span id="cb27-31"><a href="#cb27-31"></a><span class="dv">31</span>:                 <span class="fu">IAdd</span>(),</span>
+<span id="cb27-32"><a href="#cb27-32"></a><span class="dv">32</span>:                 <span class="fu">IVar</span>(<span class="st">&quot;_loop_cont&quot;</span>),</span>
+<span id="cb27-33"><a href="#cb27-33"></a><span class="dv">33</span>:                 <span class="fu">IVar</span>(<span class="st">&quot;_loop_cont&quot;</span>),</span>
+<span id="cb27-34"><a href="#cb27-34"></a><span class="dv">34</span>:                 <span class="fu">IResume</span>()</span>
+<span id="cb27-35"><a href="#cb27-35"></a><span class="dv">35</span>:             )</span>
+<span id="cb27-36"><a href="#cb27-36"></a><span class="dv">36</span>:         ),</span>
+<span id="cb27-37"><a href="#cb27-37"></a><span class="dv">37</span>:         <span class="fu">ICall</span>()</span>
+<span id="cb27-38"><a href="#cb27-38"></a><span class="dv">38</span>:     )</span>
+<span id="cb27-39"><a href="#cb27-39"></a><span class="dv">39</span>: ),</span>
+<span id="cb27-40"><a href="#cb27-40"></a><span class="dv">40</span>: <span class="fu">ICallCC</span>()</span>
+<span id="cb27-41"><a href="#cb27-41"></a><span class="dv">41</span>: ...</span></code></pre></div>
+<p>The following notes should help you to explain how this translation works:</p>
+<ol type="1">
+<li>The code sequences on lines 1 and 2 compute the from and to expressions before we enter the loop.</li>
+<li>The outer closure, created by the <code>IClosure</code> instruction at line 3, binds the resulting values to variables <code>_from</code> and <code>_to</code>.</li>
+<li>That closure is called by the <code>ICallCC</code> at line 40, so its <code>_break_cont</code> parameter is bound to a continuation which when resumed will jump to line 41 and exit the loop (call this the <em>break continuation</em>).</li>
+<li>The closure at line 7 is called by the <code>ICallCC</code> at line 15, which binds the parameter <code>_loop_cont</code> to a continuation which when resumed will jump to line 16 (call this the <em>loop continuation</em>).</li>
+<li>The body of that closure pushes the starting value of the loop, which is bound to <code>_from</code>, and the loop continuation bound to <code>_loop_cont</code> onto the operand stack so that those two values are returned to the calling context at line 16.</li>
+<li>The closure at line 16 is called by the <code>ICall</code> at line 37, that binds the control variable of the loop and the variable <code>_loop_cont</code> to the top two elements on the operand stack. On the first time it is called this binds the control variable to the starting value of the loop and it binds <code>_loop_cont</code> to the loop continuation.</li>
+<li>The term <code>step_value</code> referenced on line 30 is the constant integer obtained by evaluating the constant step expression of the loop, if such is present, otherwise it is equal to 1. The semantic rules of Lintilla ensure that <code>step_value</code> is not equal to 0.</li>
+<li>There are two possibilities for the translated code at line 20:
+<ul>
+<li><p><code>step_value &gt; 0</code> then the following translation is used:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">IVar</span>(<span class="st">&quot;_to&quot;</span>),</span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="fu">IVar</span>(control_var),</span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="fu">ILess</span>()</span></code></pre></div></li>
+<li><p><code>step_value &lt; 0</code> then the following translation is used:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">IVar</span>(control_var),</span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="fu">IVar</span>(<span class="st">&quot;_to&quot;</span>),</span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="fu">ILess</span>()</span></code></pre></div></li>
+</ul></li>
+<li>After the code generated from the loop body (line 28), lines 29-31 add the step value to the current value of the control variable leaving that new value for the control variable on the operand stack.</li>
+<li>We then push two copies of the loop continuation, which is bound to <code>_loop_cont</code>, and resume the second one. This causes execution to jump back to line 16 to execute the next iteration of the loop. Notice, however, that the values that are now left on the operand stack at line 16 are the new value for the control variable and the loop continuation. So when we call the closure pushed at line 16, by executing the <code>ICall</code> at line 37, we bind that new value to the control variable and we rebind the loop continuation to <code>_loop_cont</code>.</li>
+</ol>
+<p>The translations for the <code>loop</code> and <code>break</code> constructs are much simpler:</p>
+<ul>
+<li><p><code>break</code> should translate to the simple SECD code sequence</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">IDropAll</span>(),             <span class="co">// Flush the operand stack, to avoid spurious return values.</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="fu">IVar</span>(<span class="st">&quot;_break_cont&quot;</span>),    <span class="co">// Push the break continuation onto the operand stack and...</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="fu">IResume</span>()               <span class="co">// ...resume it, thereby jumping to the exit point of the loop.</span></span></code></pre></div></li>
+<li><p><code>loop</code> should translate to the slightly more complex SECD code sequence</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">IDropAll</span>(),             <span class="co">// Flush the operand stack, to avoid spurious return values.</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="fu">IVar</span>(control_var),</span>
+<span id="cb31-3"><a href="#cb31-3"></a><span class="fu">IInt</span>(step_value),       <span class="co">// Compute the new value for the control variable...</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a><span class="fu">IAdd</span>(),                 <span class="co">// ... and leave it on the operand stack.</span></span>
+<span id="cb31-5"><a href="#cb31-5"></a><span class="fu">IVar</span>(<span class="st">&quot;_loop_cont&quot;</span>),     <span class="co">// Push the loop continuation onto the operand stack...</span></span>
+<span id="cb31-6"><a href="#cb31-6"></a><span class="fu">IVar</span>(<span class="st">&quot;_loop_cont&quot;</span>),     <span class="co">// ... twice.</span></span>
+<span id="cb31-7"><a href="#cb31-7"></a><span class="fu">IResume</span>()               <span class="co">// And resume it, jumping back to the head of the loop.</span></span></code></pre></div>
+<p>which is largely identical to the code that triggers the next iteration of the loop on lines 29-34 of the <code>for</code> translation scheme above.</p></li>
+</ul>
+<p>These translations seem quite straightforward, but there is a fly in the ointment when it comes to actually implementing the translation for the <code>loop</code> construct. It refers to the values <code>control_var</code> and <code>step_value</code>, but those were computed during the translation of the enclosing <code>for</code> loop and so they are not immediately available at the point where we construct the translation of a <code>loop</code> construct.</p>
+<p>To solve this problem we can adopt an old <code>C</code> programmer’s trick. First we introduce two mutable variables that are fields of the <code>Translator</code> object, an so therefore visible from anywhere within the scope of that object:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb32-1"><a href="#cb32-1"></a><span class="kw">var</span> control_var: String = <span class="st">&quot;&quot;</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a><span class="kw">var</span> step_value: Int = <span class="dv">0</span></span></code></pre></div>
+<p>The idea is that wherever we are within the translator execution these should always be setup to contain the name of the control variable and the step size of the smallest enclosing <code>for</code> loop. We do that by surrounding the code that translates <code>for</code> loops by code that saves the original values of the variables <code>control_var</code> and <code>step_value</code> in local variables before they are updated for the current <code>for</code> loop and then restores them from those local variables on exit:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb33-1"><a href="#cb33-1"></a><span class="kw">case</span> <span class="fu">ForExp</span>(<span class="fu">IdnDef</span>(id), from, to, step) =&gt;</span>
+<span id="cb33-2"><a href="#cb33-2"></a>    <span class="co">// Save original values of control_var and step_value in local variables</span></span>
+<span id="cb33-3"><a href="#cb33-3"></a>    <span class="kw">val</span> old_control_var = control_var</span>
+<span id="cb33-4"><a href="#cb33-4"></a>    <span class="kw">val</span> old_step_value = step_value</span>
+<span id="cb33-5"><a href="#cb33-5"></a>    <span class="co">// Update control_var and step_value for the loop we are currently translating</span></span>
+<span id="cb33-6"><a href="#cb33-6"></a>    control_var = id</span>
+<span id="cb33-7"><a href="#cb33-7"></a>    step_value = ...</span>
+<span id="cb33-8"><a href="#cb33-8"></a></span>
+<span id="cb33-9"><a href="#cb33-9"></a>    <span class="co">// .... Code to translate this for expression</span></span>
+<span id="cb33-10"><a href="#cb33-10"></a></span>
+<span id="cb33-11"><a href="#cb33-11"></a>    <span class="co">// Restore the values that control_var and step_value had on entry</span></span>
+<span id="cb33-12"><a href="#cb33-12"></a>    control_var = old_control_var</span>
+<span id="cb33-13"><a href="#cb33-13"></a>    step_value = old_step_value</span></code></pre></div>
+<h3 id="what-you-have-to-do">What you have to do</h3>
+<p>You have to write, document and test extensions to the translator for the Lintilla language, according to the description above. You are strongly advised to complete portions of the assignment before moving onto the next one, rather than trying to code the whole solution in one go.</p>
+<p>The translations of logical and array operators are worth approximately half the marks, and are really quite straightforward. So we <strong>very strongly</strong> recommend that you start by concentrating on writing, testing and documenting the translator for those much simpler constructs. Only once you have gotten all of that completed (code and report) should you attempt to move on to implementing the translator for the more challenging <code>for</code> loop. This will then provide you with an excellent insurance policy against running out of time later in the semester.</p>
+<p>A skeleton sbt project for the assignment has been provided on BitBucket as the <a href="https://bitbucket.org/dominicverity/comp332-lintilla">dominicverity/comp332-lintilla</a> repository. The modules are very similar to those used in the practical exercises. The skeleton contains the modules you will need, particularly for Weeks 10 and 11. For this assignment you should <strong>not</strong> modify any parts of the implementation except the translator (<code>Translator.scala</code>) and its related tests (<code>ExecTests.scala</code>).</p>
+<p>A partially complete translation function is given to get you started; all you need do is add clauses to translate the logical, array and loop constructs discussed above (look for <code>FIXME</code> in the code for some places where new code has to go).</p>
+<h3 id="what-you-must-hand-in-and-how">What you must hand in and how</h3>
+<p>A zip file containing all of the code for your project and a type-written report.</p>
+<p>Submit every source and build file that is needed to build your program from source, including files in the skeleton that you have not changed. Do not add any new files or include multiple versions of your files. Do not include any libraries or generated files (run the sbt <code>clean</code> command before you zip your project). We will compile all of the files that you submit using sbt, so you should avoid any other build mechanisms.</p>
+<p>Your submission should include all of the tests that you have used to make sure that your program is working correctly. Note that just testing one or two simple cases is not enough for many marks. You should test as comprehensively as you can.</p>
+<p>Your report should describe how you have achieved the goals of the assignment. Do not neglect the report since it is worth 50% of the marks for the assignment.</p>
+<p>Your report should contain the following sections:</p>
+<ul>
+<li>A title page or heading that gives the assignment details, your name and student number.</li>
+<li>A brief introduction that summarises the aim of the assignment and the structure of the rest of the report.</li>
+<li>A description of the design and implementation work that you have done to achieve the goals of the assignment. Listing some code fragments may be useful to illustrate your description, but don’t give a long listing. Leaving out obvious stuff is OK, as long as what you have done is clear. A good rule of thumb is to include enough detail to allow a fellow student to understand it if they are at the stage you were at when you started work on the assignment.</li>
+<li>A description of the testing that you carried out. You should demonstrate that you have used a properly representative set of test cases to be confident that you have covered all the bases. Include details of the tests that you used and the rationale behind why they were chosen. Do not just reporduce the tests in your report without explanation.</li>
+</ul>
+<p>Submit your code and report electronically in a single zip file called <code>ass3.zip</code> using the appropriate submission link on the COMP332 iLearn website by the due date and time. Your report must be in PDF format.</p>
+<p>DO NOT SUBMIT YOUR ASSIGNMENT OR DOCUMENTATION IN ANY OTHER FORMAT THAN ZIP and PDF, RESPECTIVELY. Use of any other format slows down the marking and may result in a mark deduction.</p>
+<h3 id="marking">Marking</h3>
+<p>The assignment will be assessed according to the assessment standards for the unit learning outcomes.</p>
+<p>Marks will be allocated equally to the code and to the report. Your code will be assessed for correctness and quality with respect to the assignment description. Marking of the report will assess the clarity and accuracy of your description and the adequacy of your testing. 20% of the marks for the assignment will be allocated to testing.</p>
+<hr />
+<p><a href="http://orcid.org/0000-0002-4137-6982">Dominic Verity</a><br />
+Last modified: 22nd October 2019<br />
+<a href="http://mozilla.org/MPL/2.0/">Copyright (c) 2019 by Dominic Verity. All rights reserved.</a></p>
+</body>
+</html>

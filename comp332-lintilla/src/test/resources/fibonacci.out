@@ -1,0 +1,112 @@
+Program tree:
+-------------
+
+Program(
+    Vector(
+        FnDecl(
+            IdnDef("fibonacci"),
+            Vector(ParamDecl(IdnDef("n"), IntType())),
+            Some(IntType()),
+            Block(
+                Vector(
+                    FnDecl(
+                        IdnDef("fib"),
+                        Vector(
+                            ParamDecl(IdnDef("res1"), IntType()),
+                            ParamDecl(IdnDef("res2"), IntType()),
+                            ParamDecl(IdnDef("count"), IntType())),
+                        Some(IntType()),
+                        Block(
+                            Vector(
+                                IfExp(
+                                    LessExp(
+                                        IntExp(0),
+                                        IdnExp(IdnUse("count"))),
+                                    Block(
+                                        Vector(
+                                            AppExp(
+                                                IdnExp(IdnUse("fib")),
+                                                Vector(
+                                                    IdnExp(IdnUse("res2")),
+                                                    PlusExp(
+                                                        IdnExp(
+                                                            IdnUse("res1")),
+                                                        IdnExp(
+                                                            IdnUse("res2"))),
+                                                    MinusExp(
+                                                        IdnExp(
+                                                            IdnUse("count")),
+                                                        IntExp(1)))))),
+                                    Block(Vector(IdnExp(IdnUse("res1")))))))),
+                    IfExp(
+                        LessExp(IntExp(0), IdnExp(IdnUse("n"))),
+                        Block(
+                            Vector(
+                                AppExp(
+                                    IdnExp(IdnUse("fib")),
+                                    Vector(
+                                        IntExp(0),
+                                        IntExp(1),
+                                        IdnExp(IdnUse("n")))))),
+                        Block(Vector(NegExp(IntExp(1)))))))),
+        PrintExp(AppExp(IdnExp(IdnUse("fibonacci")), Vector(IntExp(10))))))
+
+Environment out:
+----------------
+
+scope
+    "fibonacci" -> Function(fn(int)->int,Block(Vector(FnDecl(IdnDef(fib),Vector(ParamDecl(IdnDef(res1),int), ParamDecl(IdnDef(res2),int), ParamDecl(IdnDef(count),int)),Some(int),Block(Vector(IfExp(LessExp(IntExp(0),IdnExp(IdnUse(count))),Block(Vector(AppExp(IdnExp(IdnUse(fib)),Vector(IdnExp(IdnUse(res2)), PlusExp(IdnExp(IdnUse(res1)),IdnExp(IdnUse(res2))), MinusExp(IdnExp(IdnUse(count)),IntExp(1)))))),Block(Vector(IdnExp(IdnUse(res1)))))))), IfExp(LessExp(IntExp(0),IdnExp(IdnUse(n))),Block(Vector(AppExp(IdnExp(IdnUse(fib)),Vector(IntExp(0), IntExp(1), IdnExp(IdnUse(n)))))),Block(Vector(NegExp(IntExp(1))))))))
+
+Target tree:
+------------
+
+List(
+    IClosure(
+        Some("fibonacci"),
+        List("n"),
+        List(
+            IClosure(
+                Some("fib"),
+                List("res1", "res2", "count"),
+                List(
+                    IInt(0),
+                    IVar("count"),
+                    ILess(),
+                    IBranch(
+                        List(
+                            IVar("res2"),
+                            IVar("res1"),
+                            IVar("res2"),
+                            IAdd(),
+                            IVar("count"),
+                            IInt(1),
+                            ISub(),
+                            IVar("fib"),
+                            ICall()),
+                        List(IVar("res1"))))),
+            IClosure(
+                None,
+                List("fib"),
+                List(
+                    IInt(0),
+                    IVar("n"),
+                    ILess(),
+                    IBranch(
+                        List(
+                            IInt(0),
+                            IInt(1),
+                            IVar("n"),
+                            IVar("fib"),
+                            ICall()),
+                        List(IInt(0), IInt(1), ISub())))),
+            ICall())),
+    IClosure(
+        None,
+        List("fibonacci"),
+        List(IInt(10), IVar("fibonacci"), ICall(), IPrint())),
+    ICall())
+
+Output:
+-------
+
+55

@@ -1,0 +1,20 @@
+//
+// This file is part of COMP332 Assignment 3 2019.
+//
+// Lintilla, a simple functional programming language.
+//
+// © 2019, Dominic Verity and Anthony Sloane, Macquarie University.
+//         All rights reserved.
+//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+//
+// A simple factorial function written in Lintilla.
+//
+
+fn fact(n: int) -> int {
+  if n = 0 { 1 } else { n * fact(n-1) }
+};
+
+print(fact(5))

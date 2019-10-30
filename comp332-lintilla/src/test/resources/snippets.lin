@@ -1,0 +1,69 @@
+//
+// This file is part of COMP332 Assignment 3 2019.
+//
+// Lintilla, a simple functional programming language.
+//
+// © 2019, Dominic Verity and Anthony Sloane, Macquarie University.
+//         All rights reserved.
+//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+//
+// Miscellaneous code snippets referred to in the README and assignment 3 spec.
+
+let y = 1;
+print y;
+{
+    print y;
+    let y = 2;
+    print y
+};
+print y;
+
+fn mod(n: int, m: int) -> int {
+    n - (n / m) * m
+};
+    
+print(mod(23,10));  // prints `3`, the remainder when `23` is divided by `10`.
+
+let x = 20;
+
+fn print_n_plus_x(n : int) {
+    print x + n
+};
+
+print_n_plus_x(23);    // prints the value `43`
+
+fn f(a : int) -> int {
+    a + 1
+};
+    
+fn g(b : fn(int) -> int) -> int {
+    b(5)
+};
+    
+print g(f);
+
+// {
+//     let b = {
+//         let p = 1;
+//         p + 1
+//      };
+//      print p + 2
+// };
+
+print g;
+
+// fn k(n : int, n : int) { let n = 10; let k = 7 };
+
+fn l() {
+    let l = 10;
+    print l
+};
+
+l();
+
+let z = { print 10; 10 } + { print 5; 5 };
+print z
+

@@ -1,0 +1,44 @@
+//
+// This file is part of COMP332 Assignment 3 2019.
+//
+// Lintilla, a simple functional programming language.
+//
+// © 2019, Dominic Verity and Anthony Sloane, Macquarie University.
+//         All rights reserved.
+//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+//
+// An illustration of a higher order function, that is one that takes a
+// parameter of function type. A simple recursive function to iterate
+// the application of a function a specified number of times.
+//
+
+fn iterate(f : fn(int) -> int, count : int) -> (fn(int) -> int) {
+
+    fn iter(n : int, count : int) -> int {
+        if count < 1 {
+            n
+        } else {
+            iter(f(n), count - 1)
+        }
+    };
+    
+    fn res(n : int) -> int {
+        iter(n, count)
+    };
+    
+    res
+};
+
+fn add10(n : int) -> int { n + 10 };
+fn multby3(n : int) -> int { n * 3 };
+
+let add10tentimes = iterate(add10, 10);
+let add10fivetimes = iterate(add10, 5);
+let multby3threetimes = iterate(multby3, 3);
+
+print add10tentimes(35);
+print add10fivetimes(0);
+print multby3threetimes(1)

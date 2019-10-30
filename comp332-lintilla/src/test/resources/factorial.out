@@ -1,0 +1,63 @@
+Program tree:
+-------------
+
+Program(
+    Vector(
+        FnDecl(
+            IdnDef("fact"),
+            Vector(ParamDecl(IdnDef("n"), IntType())),
+            Some(IntType()),
+            Block(
+                Vector(
+                    IfExp(
+                        EqualExp(IdnExp(IdnUse("n")), IntExp(0)),
+                        Block(Vector(IntExp(1))),
+                        Block(
+                            Vector(
+                                StarExp(
+                                    IdnExp(IdnUse("n")),
+                                    AppExp(
+                                        IdnExp(IdnUse("fact")),
+                                        Vector(
+                                            MinusExp(
+                                                IdnExp(IdnUse("n")),
+                                                IntExp(1))))))))))),
+        PrintExp(AppExp(IdnExp(IdnUse("fact")), Vector(IntExp(5))))))
+
+Environment out:
+----------------
+
+scope
+    "fact" -> Function(fn(int)->int,Block(Vector(IfExp(EqualExp(IdnExp(IdnUse(n)),IntExp(0)),Block(Vector(IntExp(1))),Block(Vector(StarExp(IdnExp(IdnUse(n)),AppExp(IdnExp(IdnUse(fact)),Vector(MinusExp(IdnExp(IdnUse(n)),IntExp(1)))))))))))
+
+Target tree:
+------------
+
+List(
+    IClosure(
+        Some("fact"),
+        List("n"),
+        List(
+            IVar("n"),
+            IInt(0),
+            IEqual(),
+            IBranch(
+                List(IInt(1)),
+                List(
+                    IVar("n"),
+                    IVar("n"),
+                    IInt(1),
+                    ISub(),
+                    IVar("fact"),
+                    ICall(),
+                    IMul())))),
+    IClosure(
+        None,
+        List("fact"),
+        List(IInt(5), IVar("fact"), ICall(), IPrint())),
+    ICall())
+
+Output:
+-------
+
+120

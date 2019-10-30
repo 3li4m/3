@@ -1,0 +1,218 @@
+Program tree:
+-------------
+
+Program(
+    Vector(
+        LetDecl(IdnDef("y"), IntExp(1)),
+        PrintExp(IdnExp(IdnUse("y"))),
+        Block(
+            Vector(
+                PrintExp(IdnExp(IdnUse("y"))),
+                LetDecl(IdnDef("y"), IntExp(2)),
+                PrintExp(IdnExp(IdnUse("y"))))),
+        PrintExp(IdnExp(IdnUse("y"))),
+        FnDecl(
+            IdnDef("mod"),
+            Vector(
+                ParamDecl(IdnDef("n"), IntType()),
+                ParamDecl(IdnDef("m"), IntType())),
+            Some(IntType()),
+            Block(
+                Vector(
+                    MinusExp(
+                        IdnExp(IdnUse("n")),
+                        StarExp(
+                            SlashExp(
+                                IdnExp(IdnUse("n")),
+                                IdnExp(IdnUse("m"))),
+                            IdnExp(IdnUse("m"))))))),
+        PrintExp(
+            AppExp(IdnExp(IdnUse("mod")), Vector(IntExp(23), IntExp(10)))),
+        LetDecl(IdnDef("x"), IntExp(20)),
+        FnDecl(
+            IdnDef("print_n_plus_x"),
+            Vector(ParamDecl(IdnDef("n"), IntType())),
+            None,
+            Block(
+                Vector(
+                    PrintExp(
+                        PlusExp(IdnExp(IdnUse("x")), IdnExp(IdnUse("n"))))))),
+        AppExp(IdnExp(IdnUse("print_n_plus_x")), Vector(IntExp(23))),
+        FnDecl(
+            IdnDef("f"),
+            Vector(ParamDecl(IdnDef("a"), IntType())),
+            Some(IntType()),
+            Block(Vector(PlusExp(IdnExp(IdnUse("a")), IntExp(1))))),
+        FnDecl(
+            IdnDef("g"),
+            Vector(
+                ParamDecl(IdnDef("b"), FnType(Vector(IntType()), IntType()))),
+            Some(IntType()),
+            Block(Vector(AppExp(IdnExp(IdnUse("b")), Vector(IntExp(5)))))),
+        PrintExp(AppExp(IdnExp(IdnUse("g")), Vector(IdnExp(IdnUse("f"))))),
+        PrintExp(IdnExp(IdnUse("g"))),
+        FnDecl(
+            IdnDef("l"),
+            Vector(),
+            None,
+            Block(
+                Vector(
+                    LetDecl(IdnDef("l"), IntExp(10)),
+                    PrintExp(IdnExp(IdnUse("l")))))),
+        AppExp(IdnExp(IdnUse("l")), Vector()),
+        LetDecl(
+            IdnDef("z"),
+            PlusExp(
+                Block(Vector(PrintExp(IntExp(10)), IntExp(10))),
+                Block(Vector(PrintExp(IntExp(5)), IntExp(5))))),
+        PrintExp(IdnExp(IdnUse("z")))))
+
+Environment out:
+----------------
+
+scope
+    "x" -> Variable(IntExp(20))
+    "mod" -> Function(fn(int,int)->int,Block(Vector(MinusExp(IdnExp(IdnUse(n)),StarExp(SlashExp(IdnExp(IdnUse(n)),IdnExp(IdnUse(m))),IdnExp(IdnUse(m)))))))
+    "y" -> Variable(IntExp(1))
+    "f" -> Function(fn(int)->int,Block(Vector(PlusExp(IdnExp(IdnUse(a)),IntExp(1)))))
+    "print_n_plus_x" -> Function(fn(int)->unit,Block(Vector(PrintExp(PlusExp(IdnExp(IdnUse(x)),IdnExp(IdnUse(n)))))))
+    "g" -> Function(fn(fn(int)->int)->int,Block(Vector(AppExp(IdnExp(IdnUse(b)),Vector(IntExp(5))))))
+    "l" -> Function(fn()->unit,Block(Vector(LetDecl(IdnDef(l),IntExp(10)), PrintExp(IdnExp(IdnUse(l))))))
+    "z" -> Variable(PlusExp(Block(Vector(PrintExp(IntExp(10)), IntExp(10))),Block(Vector(PrintExp(IntExp(5)), IntExp(5)))))
+
+Target tree:
+------------
+
+List(
+    IInt(1),
+    IClosure(
+        None,
+        List("y"),
+        List(
+            IVar("y"),
+            IPrint(),
+            IVar("y"),
+            IPrint(),
+            IInt(2),
+            IClosure(None, List("y"), List(IVar("y"), IPrint())),
+            ICall(),
+            IVar("y"),
+            IPrint(),
+            IClosure(
+                Some("mod"),
+                List("n", "m"),
+                List(
+                    IVar("n"),
+                    IVar("n"),
+                    IVar("m"),
+                    IDiv(),
+                    IVar("m"),
+                    IMul(),
+                    ISub())),
+            IClosure(
+                None,
+                List("mod"),
+                List(
+                    IInt(23),
+                    IInt(10),
+                    IVar("mod"),
+                    ICall(),
+                    IPrint(),
+                    IInt(20),
+                    IClosure(
+                        None,
+                        List("x"),
+                        List(
+                            IClosure(
+                                Some("print_n_plus_x"),
+                                List("n"),
+                                List(IVar("x"), IVar("n"), IAdd(), IPrint())),
+                            IClosure(
+                                None,
+                                List("print_n_plus_x"),
+                                List(
+                                    IInt(23),
+                                    IVar("print_n_plus_x"),
+                                    ICall(),
+                                    IClosure(
+                                        Some("f"),
+                                        List("a"),
+                                        List(IVar("a"), IInt(1), IAdd())),
+                                    IClosure(
+                                        None,
+                                        List("f"),
+                                        List(
+                                            IClosure(
+                                                Some("g"),
+                                                List("b"),
+                                                List(
+                                                    IInt(5),
+                                                    IVar("b"),
+                                                    ICall())),
+                                            IClosure(
+                                                None,
+                                                List("g"),
+                                                List(
+                                                    IVar("f"),
+                                                    IVar("g"),
+                                                    ICall(),
+                                                    IPrint(),
+                                                    IVar("g"),
+                                                    IPrint(),
+                                                    IClosure(
+                                                        Some("l"),
+                                                        Nil,
+                                                        List(
+                                                            IInt(10),
+                                                            IClosure(
+                                                                None,
+                                                                List("l"),
+                                                                List(
+                                                                    IVar(
+                                                                        "l"),
+                                                                    IPrint())),
+                                                            ICall())),
+                                                    IClosure(
+                                                        None,
+                                                        List("l"),
+                                                        List(
+                                                            IVar("l"),
+                                                            ICall(),
+                                                            IInt(10),
+                                                            IPrint(),
+                                                            IInt(10),
+                                                            IInt(5),
+                                                            IPrint(),
+                                                            IInt(5),
+                                                            IAdd(),
+                                                            IClosure(
+                                                                None,
+                                                                List("z"),
+                                                                List(
+                                                                    IVar(
+                                                                        "z"),
+                                                                    IPrint())),
+                                                            ICall())),
+                                                    ICall())),
+                                            ICall())),
+                                    ICall())),
+                            ICall())),
+                    ICall())),
+            ICall())),
+    ICall())
+
+Output:
+-------
+
+1
+1
+2
+1
+3
+43
+6
+function of arguments (b)
+10
+10
+5
+15

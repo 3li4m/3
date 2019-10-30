@@ -1,0 +1,206 @@
+Program tree:
+-------------
+
+Program(
+    Vector(
+        FnDecl(
+            IdnDef("iterate"),
+            Vector(
+                ParamDecl(IdnDef("f"), FnType(Vector(IntType()), IntType())),
+                ParamDecl(IdnDef("count"), IntType())),
+            Some(FnType(Vector(IntType()), IntType())),
+            Block(
+                Vector(
+                    FnDecl(
+                        IdnDef("iter"),
+                        Vector(
+                            ParamDecl(IdnDef("n"), IntType()),
+                            ParamDecl(IdnDef("count"), IntType())),
+                        Some(IntType()),
+                        Block(
+                            Vector(
+                                IfExp(
+                                    LessExp(
+                                        IdnExp(IdnUse("count")),
+                                        IntExp(1)),
+                                    Block(Vector(IdnExp(IdnUse("n")))),
+                                    Block(
+                                        Vector(
+                                            AppExp(
+                                                IdnExp(IdnUse("iter")),
+                                                Vector(
+                                                    AppExp(
+                                                        IdnExp(IdnUse("f")),
+                                                        Vector(
+                                                            IdnExp(
+                                                                IdnUse("n")))),
+                                                    MinusExp(
+                                                        IdnExp(
+                                                            IdnUse("count")),
+                                                        IntExp(1)))))))))),
+                    FnDecl(
+                        IdnDef("res"),
+                        Vector(ParamDecl(IdnDef("n"), IntType())),
+                        Some(IntType()),
+                        Block(
+                            Vector(
+                                AppExp(
+                                    IdnExp(IdnUse("iter")),
+                                    Vector(
+                                        IdnExp(IdnUse("n")),
+                                        IdnExp(IdnUse("count"))))))),
+                    IdnExp(IdnUse("res"))))),
+        FnDecl(
+            IdnDef("add10"),
+            Vector(ParamDecl(IdnDef("n"), IntType())),
+            Some(IntType()),
+            Block(Vector(PlusExp(IdnExp(IdnUse("n")), IntExp(10))))),
+        FnDecl(
+            IdnDef("multby3"),
+            Vector(ParamDecl(IdnDef("n"), IntType())),
+            Some(IntType()),
+            Block(Vector(StarExp(IdnExp(IdnUse("n")), IntExp(3))))),
+        LetDecl(
+            IdnDef("add10tentimes"),
+            AppExp(
+                IdnExp(IdnUse("iterate")),
+                Vector(IdnExp(IdnUse("add10")), IntExp(10)))),
+        LetDecl(
+            IdnDef("add10fivetimes"),
+            AppExp(
+                IdnExp(IdnUse("iterate")),
+                Vector(IdnExp(IdnUse("add10")), IntExp(5)))),
+        LetDecl(
+            IdnDef("multby3threetimes"),
+            AppExp(
+                IdnExp(IdnUse("iterate")),
+                Vector(IdnExp(IdnUse("multby3")), IntExp(3)))),
+        PrintExp(
+            AppExp(IdnExp(IdnUse("add10tentimes")), Vector(IntExp(35)))),
+        PrintExp(
+            AppExp(IdnExp(IdnUse("add10fivetimes")), Vector(IntExp(0)))),
+        PrintExp(
+            AppExp(IdnExp(IdnUse("multby3threetimes")), Vector(IntExp(1))))))
+
+Environment out:
+----------------
+
+scope
+    "multby3threetimes" -> Variable(AppExp(IdnExp(IdnUse(iterate)),Vector(IdnExp(IdnUse(multby3)), IntExp(3))))
+    "add10tentimes" -> Variable(AppExp(IdnExp(IdnUse(iterate)),Vector(IdnExp(IdnUse(add10)), IntExp(10))))
+    "multby3" -> Function(fn(int)->int,Block(Vector(StarExp(IdnExp(IdnUse(n)),IntExp(3)))))
+    "add10" -> Function(fn(int)->int,Block(Vector(PlusExp(IdnExp(IdnUse(n)),IntExp(10)))))
+    "iterate" -> Function(fn(fn(int)->int,int)->(fn(int)->int),Block(Vector(FnDecl(IdnDef(iter),Vector(ParamDecl(IdnDef(n),int), ParamDecl(IdnDef(count),int)),Some(int),Block(Vector(IfExp(LessExp(IdnExp(IdnUse(count)),IntExp(1)),Block(Vector(IdnExp(IdnUse(n)))),Block(Vector(AppExp(IdnExp(IdnUse(iter)),Vector(AppExp(IdnExp(IdnUse(f)),Vector(IdnExp(IdnUse(n)))), MinusExp(IdnExp(IdnUse(count)),IntExp(1)))))))))), FnDecl(IdnDef(res),Vector(ParamDecl(IdnDef(n),int)),Some(int),Block(Vector(AppExp(IdnExp(IdnUse(iter)),Vector(IdnExp(IdnUse(n)), IdnExp(IdnUse(count))))))), IdnExp(IdnUse(res)))))
+    "add10fivetimes" -> Variable(AppExp(IdnExp(IdnUse(iterate)),Vector(IdnExp(IdnUse(add10)), IntExp(5))))
+
+Target tree:
+------------
+
+List(
+    IClosure(
+        Some("iterate"),
+        List("f", "count"),
+        List(
+            IClosure(
+                Some("iter"),
+                List("n", "count"),
+                List(
+                    IVar("count"),
+                    IInt(1),
+                    ILess(),
+                    IBranch(
+                        List(IVar("n")),
+                        List(
+                            IVar("n"),
+                            IVar("f"),
+                            ICall(),
+                            IVar("count"),
+                            IInt(1),
+                            ISub(),
+                            IVar("iter"),
+                            ICall())))),
+            IClosure(
+                None,
+                List("iter"),
+                List(
+                    IClosure(
+                        Some("res"),
+                        List("n"),
+                        List(
+                            IVar("n"),
+                            IVar("count"),
+                            IVar("iter"),
+                            ICall())),
+                    IClosure(None, List("res"), List(IVar("res"))),
+                    ICall())),
+            ICall())),
+    IClosure(
+        None,
+        List("iterate"),
+        List(
+            IClosure(
+                Some("add10"),
+                List("n"),
+                List(IVar("n"), IInt(10), IAdd())),
+            IClosure(
+                None,
+                List("add10"),
+                List(
+                    IClosure(
+                        Some("multby3"),
+                        List("n"),
+                        List(IVar("n"), IInt(3), IMul())),
+                    IClosure(
+                        None,
+                        List("multby3"),
+                        List(
+                            IVar("add10"),
+                            IInt(10),
+                            IVar("iterate"),
+                            ICall(),
+                            IClosure(
+                                None,
+                                List("add10tentimes"),
+                                List(
+                                    IVar("add10"),
+                                    IInt(5),
+                                    IVar("iterate"),
+                                    ICall(),
+                                    IClosure(
+                                        None,
+                                        List("add10fivetimes"),
+                                        List(
+                                            IVar("multby3"),
+                                            IInt(3),
+                                            IVar("iterate"),
+                                            ICall(),
+                                            IClosure(
+                                                None,
+                                                List("multby3threetimes"),
+                                                List(
+                                                    IInt(35),
+                                                    IVar("add10tentimes"),
+                                                    ICall(),
+                                                    IPrint(),
+                                                    IInt(0),
+                                                    IVar("add10fivetimes"),
+                                                    ICall(),
+                                                    IPrint(),
+                                                    IInt(1),
+                                                    IVar(
+                                                        "multby3threetimes"),
+                                                    ICall(),
+                                                    IPrint())),
+                                            ICall())),
+                                    ICall())),
+                            ICall())),
+                    ICall())),
+            ICall())),
+    ICall())
+
+Output:
+-------
+
+135
+50
+27

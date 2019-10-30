@@ -1,0 +1,149 @@
+Program tree:
+-------------
+
+Program(
+    Vector(
+        FnDecl(
+            IdnDef("while"),
+            Vector(
+                ParamDecl(
+                    IdnDef("p"),
+                    FnType(Vector(IntType()), BoolType())),
+                ParamDecl(IdnDef("f"), FnType(Vector(IntType()), IntType()))),
+            Some(FnType(Vector(IntType()), IntType())),
+            Block(
+                Vector(
+                    FnDecl(
+                        IdnDef("while_aux"),
+                        Vector(ParamDecl(IdnDef("n"), IntType())),
+                        Some(IntType()),
+                        Block(
+                            Vector(
+                                IfExp(
+                                    AppExp(
+                                        IdnExp(IdnUse("p")),
+                                        Vector(IdnExp(IdnUse("n")))),
+                                    Block(
+                                        Vector(
+                                            AppExp(
+                                                IdnExp(IdnUse("while_aux")),
+                                                Vector(
+                                                    AppExp(
+                                                        IdnExp(IdnUse("f")),
+                                                        Vector(
+                                                            IdnExp(
+                                                                IdnUse("n")))))))),
+                                    Block(Vector(IdnExp(IdnUse("n")))))))),
+                    IdnExp(IdnUse("while_aux"))))),
+        FnDecl(
+            IdnDef("step"),
+            Vector(ParamDecl(IdnDef("n"), IntType())),
+            Some(IntType()),
+            Block(
+                Vector(
+                    PrintExp(IdnExp(IdnUse("n"))),
+                    PlusExp(
+                        StarExp(IdnExp(IdnUse("n")), IntExp(3)),
+                        IntExp(1))))),
+        FnDecl(
+            IdnDef("less_10000"),
+            Vector(ParamDecl(IdnDef("n"), IntType())),
+            Some(BoolType()),
+            Block(Vector(LessExp(IdnExp(IdnUse("n")), IntExp(10000))))),
+        LetDecl(
+            IdnDef("funny"),
+            AppExp(
+                IdnExp(IdnUse("while")),
+                Vector(IdnExp(IdnUse("less_10000")), IdnExp(IdnUse("step"))))),
+        PrintExp(AppExp(IdnExp(IdnUse("funny")), Vector(IntExp(2))))))
+
+Environment out:
+----------------
+
+scope
+    "funny" -> Variable(AppExp(IdnExp(IdnUse(while)),Vector(IdnExp(IdnUse(less_10000)), IdnExp(IdnUse(step)))))
+    "step" -> Function(fn(int)->int,Block(Vector(PrintExp(IdnExp(IdnUse(n))), PlusExp(StarExp(IdnExp(IdnUse(n)),IntExp(3)),IntExp(1)))))
+    "less_10000" -> Function(fn(int)->bool,Block(Vector(LessExp(IdnExp(IdnUse(n)),IntExp(10000)))))
+    "while" -> Function(fn(fn(int)->bool,fn(int)->int)->(fn(int)->int),Block(Vector(FnDecl(IdnDef(while_aux),Vector(ParamDecl(IdnDef(n),int)),Some(int),Block(Vector(IfExp(AppExp(IdnExp(IdnUse(p)),Vector(IdnExp(IdnUse(n)))),Block(Vector(AppExp(IdnExp(IdnUse(while_aux)),Vector(AppExp(IdnExp(IdnUse(f)),Vector(IdnExp(IdnUse(n)))))))),Block(Vector(IdnExp(IdnUse(n)))))))), IdnExp(IdnUse(while_aux)))))
+
+Target tree:
+------------
+
+List(
+    IClosure(
+        Some("while"),
+        List("p", "f"),
+        List(
+            IClosure(
+                Some("while_aux"),
+                List("n"),
+                List(
+                    IVar("n"),
+                    IVar("p"),
+                    ICall(),
+                    IBranch(
+                        List(
+                            IVar("n"),
+                            IVar("f"),
+                            ICall(),
+                            IVar("while_aux"),
+                            ICall()),
+                        List(IVar("n"))))),
+            IClosure(None, List("while_aux"), List(IVar("while_aux"))),
+            ICall())),
+    IClosure(
+        None,
+        List("while"),
+        List(
+            IClosure(
+                Some("step"),
+                List("n"),
+                List(
+                    IVar("n"),
+                    IPrint(),
+                    IVar("n"),
+                    IInt(3),
+                    IMul(),
+                    IInt(1),
+                    IAdd())),
+            IClosure(
+                None,
+                List("step"),
+                List(
+                    IClosure(
+                        Some("less_10000"),
+                        List("n"),
+                        List(IVar("n"), IInt(10000), ILess())),
+                    IClosure(
+                        None,
+                        List("less_10000"),
+                        List(
+                            IVar("less_10000"),
+                            IVar("step"),
+                            IVar("while"),
+                            ICall(),
+                            IClosure(
+                                None,
+                                List("funny"),
+                                List(
+                                    IInt(2),
+                                    IVar("funny"),
+                                    ICall(),
+                                    IPrint())),
+                            ICall())),
+                    ICall())),
+            ICall())),
+    ICall())
+
+Output:
+-------
+
+2
+7
+22
+67
+202
+607
+1822
+5467
+16402
