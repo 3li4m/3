@@ -15,8 +15,6 @@
 
 package lintilla
 
-import scala.collection.mutable.ArrayBuffer
-
 /**
   * Translator from Lintilla source programs to SEC target programs.
   */
@@ -173,7 +171,6 @@ object Translator {
           )
 
         // FIXME: add your translator code for logical operators, arrays and for loops here.
-
         // FIXME: Translate short-circuited evaluation of '&&', '||' and '~'.
         case AndExp(l, r) =>
           translateExp(l)
@@ -215,6 +212,10 @@ object Translator {
           gen(IAppend())
 
         // FIXME: Translate 'for' loops, 'loop' and 'break' constructs.
+          /**
+            * TAKEN FROM SUPPLIED DOCUMENTATION FROM DOM FOR ASSIGNMENT SPECS
+            * With modifications to implement it correctly
+            */
         case ForExp(IdnDef(id),from,to,step,Block(body)) =>
           // Save original values of control_var and step_value in local variables
           val old_control_var = control_var
@@ -262,18 +263,15 @@ object Translator {
             IClosure(
                 None,
                 List(control_var, "_loop_cont"),
-                testLoopTermination(step_value)
-                  ++
+                testLoopTermination(step_value) ++
                   List(IBranch(
                       List(
                           IVar("_break_cont"),
                           IResume()
                       ),
                       List()
-                  ))
-                  ++
-                  translateToFrame(body)
-                  ++
+                  )) ++
+                  translateToFrame(body) ++
                   List(
                     IVar(control_var),
                     IInt(step_value),

@@ -142,7 +142,7 @@ object LintillaTree {
   /**
     * Logical or expression, implemented using short-circuiting.
     */
-  case class OrExp(left: Expression, right: Expression) extends Expression
+  case class  OrExp(left: Expression, right: Expression) extends Expression
 
   /**
     * Logical not expression.

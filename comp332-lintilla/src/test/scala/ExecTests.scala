@@ -514,7 +514,13 @@ class ExecTests extends SemanticTests {
   test("Test false || true") {
     execTestInline("""print(false || true)""".stripMargin, "true\n")
   }
-  test("Test Short Circuit ||") {
+  test("Test false || false") {
+    execTestInline("""print(false || false)""".stripMargin, "false\n")
+  }
+  test("Test Short Circuit true || true ") {
+    execTestInline("""print({true} || {print true; true})""".stripMargin, "true\n")
+  }
+  test("Test Short Circuit true || false ") {
     execTestInline("""print({true} || {print false; false})""".stripMargin, "true\n")
   }
   //TESTING ~ NOT
@@ -525,11 +531,12 @@ class ExecTests extends SemanticTests {
     execTestInline("""print({~true})""".stripMargin, "false\n")
   }
   // FIXME: Tests of execution of array operations
-  // EMPPTY ARRAYS
+  // Empty Array
   test("Test arrays") {
     execTestInline(
       """print(array int)""".stripMargin, "empty array\n")
   }
+  //Array Length
   test("Test arrays length") {
     execTestInline(
       """let a = array int;
@@ -537,6 +544,7 @@ class ExecTests extends SemanticTests {
         |a += 5;
         |print(length(a))""".stripMargin, "2\n")
   }
+  //Array Deref
   test("Test arrays deref") {
     execTestInline(
       """let a = array int;
@@ -544,6 +552,7 @@ class ExecTests extends SemanticTests {
         |a += 5;
         |print(a ! 1)""".stripMargin, "5\n")
   }
+  //Array Assign
   test("Test arrays assign") {
     execTestInline(
       """let a = array int;
@@ -552,6 +561,7 @@ class ExecTests extends SemanticTests {
         |a ! 1 := 10;
         |print(a ! 1)""".stripMargin, "10\n")
   }
+  //Array Append
   test("Test arrays append") {
     execTestInline(
       """let a = array int;
@@ -562,15 +572,64 @@ class ExecTests extends SemanticTests {
         |print(a ! 3)""".stripMargin, "9\n")
   }
   // FIXME: Tests of execution of 'for' loops, 'break' and 'loop' constructs.
-
-  //BREAK TESTS
+  // for loop step 1
+  test("Test For Loops") {
+    execTestInline(
+      """for j = 0 to 4 step 1 do {
+        | print j
+        |}""".stripMargin, "0\n1\n2\n3\n4\n")
+  }
+  //For loop step 2
+  test("Test For Loops step 2") {
+    execTestInline(
+      """for j = 0 to 4 step 2 do {
+        | print j
+        |}""".stripMargin, "0\n2\n4\n")
+  }
+  //For loop no step
+  test("Test For Loops no step") {
+    execTestInline(
+      """for j = 0 to 4 do {
+        | print j
+        |}""".stripMargin, "0\n1\n2\n3\n4\n")
+  }
+  //Nested for loop Outer
+  test("Test For test nested loop (Outer)") {
+    execTestInline(
+      """for j = 0 to 2 step 1 do {
+        | for i = 0 to 2 step 1 do {
+        |   print j
+        | }
+        |}
+        |""".stripMargin, "0\n0\n0\n1\n1\n1\n2\n2\n2\n")
+  }
+  //Nested for loop Inner
+  test("Test For test nested loop (Inner)") {
+    execTestInline(
+      """for j = 0 to 2 step 1 do {
+        | for i = 0 to 2 step 1 do {
+        |   print i
+        | }
+        |}
+        |""".stripMargin, "0\n1\n2\n0\n1\n2\n0\n1\n2\n")
+  }
+  //Loop test
+  test("Test For LOOP") {
+    execTestInline(
+      """for j = 0 to 3 step 1 do {
+        | if (j = 2) {loop} else {};
+        | print j
+        |}""".stripMargin, "0\n1\n3\n")
+  }
+  //Break test
   test("Test For Loops Break") {
     execTestInline(
       """for j = 0 to 10 step 2 do {
         | if (j = 7) {break} else {}
         |}""".stripMargin, "")
   }
-  test("Test For Loops to bool") {
+  //Break loop to bool
+  test("Test For Loops break to bool") {
     execTestInline(
       """for j = 0 to 10 step 2 do {
         | print 1;
@@ -579,14 +638,7 @@ class ExecTests extends SemanticTests {
         |};
         |print (true)""".stripMargin, "1\ntrue\n")
   }
-  //LOOP TESTS
-  test("Test For LOOP") {
-    execTestInline(
-      """for j = 0 to 3 step 1 do {
-        | if (j = 2) {loop} else {};
-        | print j
-        |}""".stripMargin, "0\n1\n3\n")
-  }
+
   // Bigger examples.
 
   test("factorial example") {
